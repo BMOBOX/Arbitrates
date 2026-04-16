@@ -1,1 +1,63 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: arbitrates-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    restart: always
+    env_file: .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      redis:
+        condition: service_healthy
+      worker:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
+  frontend:
+    build: ./web
+    container_name: arbitrates-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --save 60 1 --loglevel warning
+    container_name: arbitrates-redis
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  worker:
+    build:
+      context: ./backend
+    container_name: arbitrates-worker
+    command: celery -A app.workers.celery_worker:celery worker --loglevel=info
+    env_file: .env
+    depends_on:
+      redis:
+        condition: service_healthy
+
+volumes:
+  redis_data:
