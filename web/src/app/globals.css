@@ -1,26 +1,111 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #121414;
+  --foreground: #e3e2e2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface-container-low: #1b1c1c;
+  --color-surface-dim: #121414;
+  --color-on-tertiary-fixed-variant: #5b4136;
+  --color-on-tertiary-fixed: #2b160e;
+  --color-primary-container: #0d2325;
+  --color-secondary-container: #424b4b;
+  --color-on-tertiary: #422b21;
+  --color-surface-container: #1f2020;
+  --color-on-primary-fixed: #081f21;
+  --color-on-primary-fixed-variant: #354a4c;
+  --color-on-background: #e3e2e2;
+  --color-on-surface: #e3e2e2;
+  --color-surface-bright: #383939;
+  --color-outline-variant: #424848;
+  --color-inverse-primary: #4c6264;
+  --color-on-error-container: #ffdad6;
+  --color-tertiary-container: #301b12;
+  --color-on-primary: #1f3436;
+  --color-secondary: #c0c8c9;
+  --color-on-secondary: #2a3233;
+  --color-on-error: #690005;
+  --color-on-tertiary-container: #a18074;
+  --color-on-secondary-fixed: #151d1e;
+  --color-inverse-on-surface: #303030;
+  --color-primary-fixed-dim: #b3cbcd;
+  --color-tertiary-fixed: #ffdbcd;
+  --color-on-primary-container: #758b8e;
+  --color-secondary-fixed-dim: #c0c8c9;
+  --color-surface-container-highest: #343535;
+  --color-primary-fixed: #cfe7e9;
+  --color-on-surface-variant: #c2c8c8;
+  --color-outline: #8c9292;
+  --color-surface: #121414;
+  --color-on-secondary-container: #b1babb;
+  --color-surface-tint: #b3cbcd;
+  --color-error-container: #93000a;
+  --color-error: #ffb4ab;
+  --color-surface-container-high: #292a2a;
+  --color-surface-container-lowest: #0d0e0e;
+  --color-tertiary: #e4bfb0;
+  --color-secondary-fixed: #dce4e5;
+  --color-on-secondary-fixed-variant: #404849;
+  --color-inverse-surface: #e3e2e2;
+  --color-surface-variant: #343535;
+  --color-tertiary-fixed-dim: #e4bfb0;
+  --color-primary: #b3cbcd;
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+  --font-headline: var(--font-manrope);
+  --font-label: var(--font-space-grotesk);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-headline {
+  font-family: var(--font-headline);
+}
+
+.font-label {
+  font-family: var(--font-label);
+}
+
+.font-manrope {
+  font-family: var(--font-manrope);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.glass-card {
+  background: rgba(53, 53, 52, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(58, 73, 75, 0.15);
+}
+
+.emissive-gradient {
+  background: linear-gradient(135deg, #00f2ff 0%, #0131df 100%);
+}
+
+.grid-bg {
+  background-image: linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }

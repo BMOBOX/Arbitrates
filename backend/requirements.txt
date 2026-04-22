@@ -1,0 +1,15 @@
+# ===== FastAPI Core =====
+fastapi
+uvicorn[standard]
+
+# ===== Production server =====
+gunicorn
+
+# ===== Data Ingestion =====
+celery
+redis
+supabase
+
+# ===== HTTP requests (GitHub API, webhooks, etc.) =====
+requests
+python-dotenv
