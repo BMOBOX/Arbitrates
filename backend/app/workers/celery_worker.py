@@ -14,5 +14,10 @@ def resolve_broker_url() -> str:
 
 celery = Celery(
     "arbitrates",
-    broker=resolve_broker_url(),
+    broker=os.getenv("CELERY_BACKEND_URL"),
+    backend=os.getenv("CELERY_BACKEND_URL")
 )
+
+celery.autodiscover_tasks([
+    "app.tasks.agent",
+])
