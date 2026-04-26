@@ -1,0 +1,3023 @@
+{
+  "schema_version": 1,
+  "directed": false,
+  "extractor_version": 61,
+  "nodes": [
+    {
+      "id": "init",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/__init__.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/__init__.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 23
+    },
+    {
+      "id": "errors",
+      "label": "errors.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 4
+    },
+    {
+      "id": "errors_not_found",
+      "label": "not_found()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+      "source_location": "L4",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+          "source_location": "L4"
+        }
+      ],
+      "community": 4
+    },
+    {
+      "id": "errors_bad_request",
+      "label": "bad_request()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+      "source_location": "L8",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+          "source_location": "L8"
+        }
+      ],
+      "community": 4
+    },
+    {
+      "id": "errors_unauthorized",
+      "label": "unauthorized()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+      "source_location": "L12",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+          "source_location": "L12"
+        }
+      ],
+      "community": 4
+    },
+    {
+      "id": "main",
+      "label": "main.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 5
+    },
+    {
+      "id": "main_http_exception_handler",
+      "label": "http_exception_handler()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+      "source_location": "L19",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+          "source_location": "L19"
+        }
+      ],
+      "community": 5
+    },
+    {
+      "id": "main_validation_exception_handler",
+      "label": "validation_exception_handler()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+      "source_location": "L30",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+          "source_location": "L30"
+        }
+      ],
+      "community": 5
+    },
+    {
+      "id": "main_unhandled_exception_handler",
+      "label": "unhandled_exception_handler()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+      "source_location": "L42",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+          "source_location": "L42"
+        }
+      ],
+      "community": 5
+    },
+    {
+      "id": "middleware",
+      "label": "middleware.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 0
+    },
+    {
+      "id": "middleware_get_expected_key",
+      "label": "_get_expected_key()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L24",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L24"
+        }
+      ],
+      "community": 0
+    },
+    {
+      "id": "middleware_get_expected_signature",
+      "label": "_get_expected_signature()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L27",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L27"
+        }
+      ],
+      "community": 0
+    },
+    {
+      "id": "middleware_extract_signature",
+      "label": "_extract_signature()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L42",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L42"
+        }
+      ],
+      "community": 0
+    },
+    {
+      "id": "middleware_extract_token",
+      "label": "_extract_token()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L49",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L49"
+        }
+      ],
+      "community": 0
+    },
+    {
+      "id": "middleware_is_exempt",
+      "label": "is_exempt()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L60",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L60"
+        }
+      ],
+      "community": 0
+    },
+    {
+      "id": "middleware_auth_failed",
+      "label": "auth_failed()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L66",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L66"
+        }
+      ],
+      "community": 0
+    },
+    {
+      "id": "middleware_api_key_middleware",
+      "label": "api_key_middleware()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L73",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L73"
+        }
+      ],
+      "community": 0
+    },
+    {
+      "id": "models",
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 3
+    },
+    {
+      "id": "models_apiresponse",
+      "label": "ApiResponse",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L7",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L7"
+        }
+      ],
+      "community": 3
+    },
+    {
+      "id": "models_errordetail",
+      "label": "ErrorDetail",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L13",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L13"
+        }
+      ],
+      "community": 3
+    },
+    {
+      "id": "models_webhookcreate",
+      "label": "WebhookCreate",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L19",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L19"
+        }
+      ],
+      "community": 1
+    },
+    {
+      "id": "models_webhookrecord",
+      "label": "WebhookRecord",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L24",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L24"
+        }
+      ],
+      "community": 3
+    },
+    {
+      "id": "models_webhooklist",
+      "label": "WebhookList",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L31",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L31"
+        }
+      ],
+      "community": 3
+    },
+    {
+      "id": "health",
+      "label": "health.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 16
+    },
+    {
+      "id": "health_read_root",
+      "label": "read_root()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py",
+      "source_location": "L9",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py",
+          "source_location": "L9"
+        }
+      ],
+      "community": 16
+    },
+    {
+      "id": "webhooks",
+      "label": "webhooks.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 2
+    },
+    {
+      "id": "webhooks_create_webhook",
+      "label": "create_webhook()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L12",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L12"
+        }
+      ],
+      "community": 2
+    },
+    {
+      "id": "webhooks_list_webhooks",
+      "label": "list_webhooks()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L43",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L43"
+        }
+      ],
+      "community": 2
+    },
+    {
+      "id": "webhooks_get_webhook",
+      "label": "get_webhook()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L50",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L50"
+        }
+      ],
+      "community": 2
+    },
+    {
+      "id": "storage",
+      "label": "storage.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 2
+    },
+    {
+      "id": "storage_webhookstore",
+      "label": "WebhookStore",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L8",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L8"
+        }
+      ],
+      "community": 1
+    },
+    {
+      "id": "storage_webhookstore_init",
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L9",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L9"
+        }
+      ],
+      "community": 1
+    },
+    {
+      "id": "storage_webhookstore_add",
+      "label": ".add()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L14",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L14"
+        }
+      ],
+      "community": 1
+    },
+    {
+      "id": "storage_webhookstore_list",
+      "label": ".list()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L26",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L26"
+        }
+      ],
+      "community": 1
+    },
+    {
+      "id": "storage_webhookstore_get",
+      "label": ".get()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L30",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L30"
+        }
+      ],
+      "community": 1
+    },
+    {
+      "id": "supabase_client",
+      "label": "supabase_client.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/supabase_client.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/supabase_client.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 2
+    },
+    {
+      "id": "agent",
+      "label": "agent.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 10
+    },
+    {
+      "id": "agent_process_webhook",
+      "label": "process_webhook()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py",
+      "source_location": "L4",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py",
+          "source_location": "L4"
+        }
+      ],
+      "community": 10
+    },
+    {
+      "id": "celery_worker",
+      "label": "celery_worker.py",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py",
+          "source_location": "L1"
+        }
+      ],
+      "community": 12
+    },
+    {
+      "id": "celery_worker_resolve_broker_url",
+      "label": "resolve_broker_url()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py",
+      "source_location": "L7",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py",
+          "source_location": "L7"
+        }
+      ],
+      "community": 12
+    },
+    {
+      "id": "next_env_d",
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/next-env.d.ts",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/next-env.d.ts",
+          "source_location": "L1"
+        }
+      ],
+      "community": 24
+    },
+    {
+      "id": "next_config",
+      "label": "next.config.ts",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/next.config.ts",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/next.config.ts",
+          "source_location": "L1"
+        }
+      ],
+      "community": 19
+    },
+    {
+      "id": "page",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 9
+    },
+    {
+      "id": "page_webhookrecord",
+      "label": "WebhookRecord",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L8",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L8"
+        }
+      ],
+      "community": 9
+    },
+    {
+      "id": "page_webhooklistresponse",
+      "label": "WebhookListResponse",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L15",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L15"
+        }
+      ],
+      "community": 9
+    },
+    {
+      "id": "page_connectpage",
+      "label": "ConnectPage()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L24",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L24"
+        }
+      ],
+      "node_kind": "component",
+      "community": 7
+    },
+    {
+      "id": "page_connectpage_loadwebhooks",
+      "label": "loadWebhooks()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L32",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L32"
+        }
+      ],
+      "community": 7
+    },
+    {
+      "id": "layout",
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 17
+    },
+    {
+      "id": "layout_rootlayout",
+      "label": "RootLayout()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx",
+      "source_location": "L28",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx",
+          "source_location": "L28"
+        }
+      ],
+      "node_kind": "component",
+      "community": 17
+    },
+    {
+      "id": "page_home",
+      "label": "Home()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "node_kind": "component",
+      "community": 8
+    },
+    {
+      "id": "agentsgrid",
+      "label": "AgentsGrid.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/AgentsGrid.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/AgentsGrid.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 11
+    },
+    {
+      "id": "agentsgrid_agentsgrid",
+      "label": "AgentsGrid()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/AgentsGrid.tsx",
+      "source_location": "L52",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/AgentsGrid.tsx",
+          "source_location": "L52"
+        }
+      ],
+      "node_kind": "component",
+      "community": 11
+    },
+    {
+      "id": "cta",
+      "label": "CTA.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 13
+    },
+    {
+      "id": "cta_cta",
+      "label": "CTA()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "node_kind": "component",
+      "community": 13
+    },
+    {
+      "id": "dashboardpreview",
+      "label": "DashboardPreview.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 6
+    },
+    {
+      "id": "dashboardpreview_webhookrecord",
+      "label": "WebhookRecord",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+      "source_location": "L26",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+          "source_location": "L26"
+        }
+      ],
+      "community": 6
+    },
+    {
+      "id": "dashboardpreview_dashboardpreviewprops",
+      "label": "DashboardPreviewProps",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+      "source_location": "L30",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+          "source_location": "L30"
+        }
+      ],
+      "community": 6
+    },
+    {
+      "id": "dashboardpreview_dashboardpreview",
+      "label": "DashboardPreview()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+      "source_location": "L35",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+          "source_location": "L35"
+        }
+      ],
+      "node_kind": "component",
+      "community": 7
+    },
+    {
+      "id": "debatemode",
+      "label": "DebateMode.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 14
+    },
+    {
+      "id": "debatemode_debatemode",
+      "label": "DebateMode()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "node_kind": "component",
+      "community": 14
+    },
+    {
+      "id": "footer",
+      "label": "Footer.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 15
+    },
+    {
+      "id": "footer_footer",
+      "label": "Footer()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "node_kind": "component",
+      "community": 15
+    },
+    {
+      "id": "hero",
+      "label": "Hero.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 8
+    },
+    {
+      "id": "hero_hero",
+      "label": "Hero()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx",
+      "source_location": "L3",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx",
+          "source_location": "L3"
+        }
+      ],
+      "node_kind": "component",
+      "community": 8
+    },
+    {
+      "id": "navbar",
+      "label": "Navbar.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 18
+    },
+    {
+      "id": "navbar_navbar",
+      "label": "Navbar()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx",
+      "source_location": "L3",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx",
+          "source_location": "L3"
+        }
+      ],
+      "node_kind": "component",
+      "community": 18
+    },
+    {
+      "id": "techstack",
+      "label": "TechStack.tsx",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "community": 20
+    },
+    {
+      "id": "techstack_techstack",
+      "label": "TechStack()",
+      "file_type": "code",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx",
+      "source_location": "L9",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx",
+          "source_location": "L9"
+        }
+      ],
+      "node_kind": "component",
+      "community": 20
+    },
+    {
+      "id": "file",
+      "file_bytes": 391,
+      "content_type": "image/svg+xml",
+      "label": "file.svg",
+      "file_type": "image",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/file.svg",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:image",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/file.svg",
+          "source_location": "L1"
+        }
+      ],
+      "community": 21
+    },
+    {
+      "id": "globe",
+      "file_bytes": 1035,
+      "content_type": "image/svg+xml",
+      "label": "globe.svg",
+      "file_type": "image",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/globe.svg",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:image",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/globe.svg",
+          "source_location": "L1"
+        }
+      ],
+      "community": 22
+    },
+    {
+      "id": "next",
+      "file_bytes": 1375,
+      "content_type": "image/svg+xml",
+      "label": "next.svg",
+      "file_type": "image",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/next.svg",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:image",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/next.svg",
+          "source_location": "L1"
+        }
+      ],
+      "community": 19
+    },
+    {
+      "id": "vercel",
+      "file_bytes": 128,
+      "content_type": "image/svg+xml",
+      "label": "vercel.svg",
+      "file_type": "image",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/vercel.svg",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:image",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/vercel.svg",
+          "source_location": "L1"
+        }
+      ],
+      "community": 25
+    },
+    {
+      "id": "window",
+      "file_bytes": 385,
+      "content_type": "image/svg+xml",
+      "label": "window.svg",
+      "file_type": "image",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/window.svg",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:image",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/window.svg",
+          "source_location": "L1"
+        }
+      ],
+      "community": 26
+    }
+  ],
+  "links": [
+    {
+      "source": "errors",
+      "target": "errors_not_found",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+      "source_location": "L4",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+          "source_location": "L4"
+        }
+      ],
+      "weight": 1,
+      "_src": "errors",
+      "_tgt": "errors_not_found",
+      "confidence_score": 1
+    },
+    {
+      "source": "errors",
+      "target": "errors_bad_request",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+      "source_location": "L8",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+          "source_location": "L8"
+        }
+      ],
+      "weight": 1,
+      "_src": "errors",
+      "_tgt": "errors_bad_request",
+      "confidence_score": 1
+    },
+    {
+      "source": "errors",
+      "target": "errors_unauthorized",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+      "source_location": "L12",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py",
+          "source_location": "L12"
+        }
+      ],
+      "weight": 1,
+      "_src": "errors",
+      "_tgt": "errors_unauthorized",
+      "confidence_score": 1
+    },
+    {
+      "source": "main",
+      "target": "main_http_exception_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+      "source_location": "L19",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+          "source_location": "L19"
+        }
+      ],
+      "weight": 1,
+      "_src": "main",
+      "_tgt": "main_http_exception_handler",
+      "confidence_score": 1
+    },
+    {
+      "source": "main",
+      "target": "main_validation_exception_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+      "source_location": "L30",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+          "source_location": "L30"
+        }
+      ],
+      "weight": 1,
+      "_src": "main",
+      "_tgt": "main_validation_exception_handler",
+      "confidence_score": 1
+    },
+    {
+      "source": "main",
+      "target": "main_unhandled_exception_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+      "source_location": "L42",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py",
+          "source_location": "L42"
+        }
+      ],
+      "weight": 1,
+      "_src": "main",
+      "_tgt": "main_unhandled_exception_handler",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware",
+      "target": "models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware",
+      "_tgt": "models",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware",
+      "target": "middleware_get_expected_key",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L24",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L24"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware",
+      "_tgt": "middleware_get_expected_key",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware",
+      "target": "middleware_get_expected_signature",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L27",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L27"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware",
+      "_tgt": "middleware_get_expected_signature",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware",
+      "target": "middleware_extract_signature",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L42",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L42"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware",
+      "_tgt": "middleware_extract_signature",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware",
+      "target": "middleware_extract_token",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L49",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L49"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware",
+      "_tgt": "middleware_extract_token",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware",
+      "target": "middleware_is_exempt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L60",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L60"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware",
+      "_tgt": "middleware_is_exempt",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware",
+      "target": "middleware_auth_failed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L66",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L66"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware",
+      "_tgt": "middleware_auth_failed",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware",
+      "target": "middleware_api_key_middleware",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L73",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L73"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware",
+      "_tgt": "middleware_api_key_middleware",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware_api_key_middleware",
+      "target": "middleware_is_exempt",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L76",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L76"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware_api_key_middleware",
+      "_tgt": "middleware_is_exempt",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware_api_key_middleware",
+      "target": "middleware_extract_signature",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L79",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L79"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware_api_key_middleware",
+      "_tgt": "middleware_extract_signature",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware_api_key_middleware",
+      "target": "middleware_get_expected_signature",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L80",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L80"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware_api_key_middleware",
+      "_tgt": "middleware_get_expected_signature",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware_api_key_middleware",
+      "target": "middleware_auth_failed",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L87",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L87"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware_api_key_middleware",
+      "_tgt": "middleware_auth_failed",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware_api_key_middleware",
+      "target": "middleware_extract_token",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L89",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L89"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware_api_key_middleware",
+      "_tgt": "middleware_extract_token",
+      "confidence_score": 1
+    },
+    {
+      "source": "middleware_api_key_middleware",
+      "target": "middleware_get_expected_key",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+      "source_location": "L90",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py",
+          "source_location": "L90"
+        }
+      ],
+      "weight": 1,
+      "_src": "middleware_api_key_middleware",
+      "_tgt": "middleware_get_expected_key",
+      "confidence_score": 1
+    },
+    {
+      "source": "models",
+      "target": "models_apiresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L7",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L7"
+        }
+      ],
+      "weight": 1,
+      "_src": "models",
+      "_tgt": "models_apiresponse",
+      "confidence_score": 1
+    },
+    {
+      "source": "models",
+      "target": "models_errordetail",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L13",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L13"
+        }
+      ],
+      "weight": 1,
+      "_src": "models",
+      "_tgt": "models_errordetail",
+      "confidence_score": 1
+    },
+    {
+      "source": "models",
+      "target": "models_webhookcreate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L19",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L19"
+        }
+      ],
+      "weight": 1,
+      "_src": "models",
+      "_tgt": "models_webhookcreate",
+      "confidence_score": 1
+    },
+    {
+      "source": "models",
+      "target": "models_webhookrecord",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L24",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L24"
+        }
+      ],
+      "weight": 1,
+      "_src": "models",
+      "_tgt": "models_webhookrecord",
+      "confidence_score": 1
+    },
+    {
+      "source": "models",
+      "target": "models_webhooklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+      "source_location": "L31",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py",
+          "source_location": "L31"
+        }
+      ],
+      "weight": 1,
+      "_src": "models",
+      "_tgt": "models_webhooklist",
+      "confidence_score": 1
+    },
+    {
+      "source": "health",
+      "target": "models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py",
+      "source_location": "L3",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py",
+          "source_location": "L3"
+        }
+      ],
+      "weight": 1,
+      "_src": "health",
+      "_tgt": "models",
+      "confidence_score": 1
+    },
+    {
+      "source": "health",
+      "target": "health_read_root",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py",
+      "source_location": "L9",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py",
+          "source_location": "L9"
+        }
+      ],
+      "weight": 1,
+      "_src": "health",
+      "_tgt": "health_read_root",
+      "confidence_score": 1
+    },
+    {
+      "source": "webhooks",
+      "target": "errors",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L2",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L2"
+        }
+      ],
+      "weight": 1,
+      "_src": "webhooks",
+      "_tgt": "errors",
+      "confidence_score": 1
+    },
+    {
+      "source": "webhooks",
+      "target": "models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L3",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L3"
+        }
+      ],
+      "weight": 1,
+      "_src": "webhooks",
+      "_tgt": "models",
+      "confidence_score": 1
+    },
+    {
+      "source": "webhooks",
+      "target": "storage",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L4",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L4"
+        }
+      ],
+      "weight": 1,
+      "_src": "webhooks",
+      "_tgt": "storage",
+      "confidence_score": 1
+    },
+    {
+      "source": "webhooks",
+      "target": "supabase_client",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L5",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L5"
+        }
+      ],
+      "weight": 1,
+      "_src": "webhooks",
+      "_tgt": "supabase_client",
+      "confidence_score": 1
+    },
+    {
+      "source": "webhooks",
+      "target": "webhooks_create_webhook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L12",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L12"
+        }
+      ],
+      "weight": 1,
+      "_src": "webhooks",
+      "_tgt": "webhooks_create_webhook",
+      "confidence_score": 1
+    },
+    {
+      "source": "webhooks",
+      "target": "webhooks_list_webhooks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L43",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L43"
+        }
+      ],
+      "weight": 1,
+      "_src": "webhooks",
+      "_tgt": "webhooks_list_webhooks",
+      "confidence_score": 1
+    },
+    {
+      "source": "webhooks",
+      "target": "webhooks_get_webhook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+      "source_location": "L50",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py",
+          "source_location": "L50"
+        }
+      ],
+      "weight": 1,
+      "_src": "webhooks",
+      "_tgt": "webhooks_get_webhook",
+      "confidence_score": 1
+    },
+    {
+      "source": "storage",
+      "target": "models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L5",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L5"
+        }
+      ],
+      "weight": 1,
+      "_src": "storage",
+      "_tgt": "models",
+      "confidence_score": 1
+    },
+    {
+      "source": "storage",
+      "target": "storage_webhookstore",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L8",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L8"
+        }
+      ],
+      "weight": 1,
+      "_src": "storage",
+      "_tgt": "storage_webhookstore",
+      "confidence_score": 1
+    },
+    {
+      "source": "storage_webhookstore",
+      "target": "storage_webhookstore_init",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L9",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L9"
+        }
+      ],
+      "weight": 1,
+      "_src": "storage_webhookstore",
+      "_tgt": "storage_webhookstore_init",
+      "confidence_score": 1
+    },
+    {
+      "source": "storage_webhookstore",
+      "target": "storage_webhookstore_add",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L14",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L14"
+        }
+      ],
+      "weight": 1,
+      "_src": "storage_webhookstore",
+      "_tgt": "storage_webhookstore_add",
+      "confidence_score": 1
+    },
+    {
+      "source": "storage_webhookstore",
+      "target": "storage_webhookstore_list",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L26",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L26"
+        }
+      ],
+      "weight": 1,
+      "_src": "storage_webhookstore",
+      "_tgt": "storage_webhookstore_list",
+      "confidence_score": 1
+    },
+    {
+      "source": "storage_webhookstore",
+      "target": "storage_webhookstore_get",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L30",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L30"
+        }
+      ],
+      "weight": 1,
+      "_src": "storage_webhookstore",
+      "_tgt": "storage_webhookstore_get",
+      "confidence_score": 1
+    },
+    {
+      "source": "agent",
+      "target": "agent_process_webhook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py",
+      "source_location": "L4",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py",
+          "source_location": "L4"
+        }
+      ],
+      "weight": 1,
+      "_src": "agent",
+      "_tgt": "agent_process_webhook",
+      "confidence_score": 1
+    },
+    {
+      "source": "celery_worker",
+      "target": "celery_worker_resolve_broker_url",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py",
+      "source_location": "L7",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py",
+          "source_location": "L7"
+        }
+      ],
+      "weight": 1,
+      "_src": "celery_worker",
+      "_tgt": "celery_worker_resolve_broker_url",
+      "confidence_score": 1
+    },
+    {
+      "source": "next_config",
+      "target": "next",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/next.config.ts",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/next.config.ts",
+          "source_location": "L1"
+        }
+      ],
+      "weight": 1,
+      "_src": "next_config",
+      "_tgt": "next",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "dashboardpreview",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L3",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L3"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "dashboardpreview",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "navbar",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L7",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L7"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "navbar",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "page_webhookrecord",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L8",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L8"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "page_webhookrecord",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "page_webhooklistresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L15",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L15"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "page_webhooklistresponse",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "page_connectpage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L24",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L24"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "page_connectpage",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_connectpage",
+      "target": "page_connectpage_loadwebhooks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L32",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L32"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_connectpage",
+      "_tgt": "page_connectpage_loadwebhooks",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_connectpage",
+      "target": "navbar_navbar",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L24",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L24"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_connectpage",
+      "_tgt": "navbar_navbar",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_connectpage",
+      "target": "dashboardpreview_dashboardpreview",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+      "source_location": "L24",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx",
+          "source_location": "L24"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_connectpage",
+      "_tgt": "dashboardpreview_dashboardpreview",
+      "confidence_score": 1
+    },
+    {
+      "source": "layout",
+      "target": "next",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "weight": 1,
+      "_src": "layout",
+      "_tgt": "next",
+      "confidence_score": 1
+    },
+    {
+      "source": "layout",
+      "target": "layout_rootlayout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx",
+      "source_location": "L28",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx",
+          "source_location": "L28"
+        }
+      ],
+      "weight": 1,
+      "_src": "layout",
+      "_tgt": "layout_rootlayout",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "agentsgrid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "agentsgrid",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "cta",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L2",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L2"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "cta",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "debatemode",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L4",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L4"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "debatemode",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "footer",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L5",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L5"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "footer",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "hero",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L6",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L6"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "hero",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "techstack",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L8",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L8"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "techstack",
+      "confidence_score": 1
+    },
+    {
+      "source": "page",
+      "target": "page_home",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "page",
+      "_tgt": "page_home",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_home",
+      "target": "navbar_navbar",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_home",
+      "_tgt": "navbar_navbar",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_home",
+      "target": "hero_hero",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_home",
+      "_tgt": "hero_hero",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_home",
+      "target": "agentsgrid_agentsgrid",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_home",
+      "_tgt": "agentsgrid_agentsgrid",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_home",
+      "target": "debatemode_debatemode",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_home",
+      "_tgt": "debatemode_debatemode",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_home",
+      "target": "dashboardpreview_dashboardpreview",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_home",
+      "_tgt": "dashboardpreview_dashboardpreview",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_home",
+      "target": "techstack_techstack",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_home",
+      "_tgt": "techstack_techstack",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_home",
+      "target": "cta_cta",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_home",
+      "_tgt": "cta_cta",
+      "confidence_score": 1
+    },
+    {
+      "source": "page_home",
+      "target": "footer_footer",
+      "relation": "renders",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "page_home",
+      "_tgt": "footer_footer",
+      "confidence_score": 1
+    },
+    {
+      "source": "agentsgrid",
+      "target": "agentsgrid_agentsgrid",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/AgentsGrid.tsx",
+      "source_location": "L52",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/AgentsGrid.tsx",
+          "source_location": "L52"
+        }
+      ],
+      "weight": 1,
+      "_src": "agentsgrid",
+      "_tgt": "agentsgrid_agentsgrid",
+      "confidence_score": 1
+    },
+    {
+      "source": "cta",
+      "target": "cta_cta",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "weight": 1,
+      "_src": "cta",
+      "_tgt": "cta_cta",
+      "confidence_score": 1
+    },
+    {
+      "source": "dashboardpreview",
+      "target": "dashboardpreview_webhookrecord",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+      "source_location": "L26",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+          "source_location": "L26"
+        }
+      ],
+      "weight": 1,
+      "_src": "dashboardpreview",
+      "_tgt": "dashboardpreview_webhookrecord",
+      "confidence_score": 1
+    },
+    {
+      "source": "dashboardpreview",
+      "target": "dashboardpreview_dashboardpreviewprops",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+      "source_location": "L30",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+          "source_location": "L30"
+        }
+      ],
+      "weight": 1,
+      "_src": "dashboardpreview",
+      "_tgt": "dashboardpreview_dashboardpreviewprops",
+      "confidence_score": 1
+    },
+    {
+      "source": "dashboardpreview",
+      "target": "dashboardpreview_dashboardpreview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+      "source_location": "L35",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx",
+          "source_location": "L35"
+        }
+      ],
+      "weight": 1,
+      "_src": "dashboardpreview",
+      "_tgt": "dashboardpreview_dashboardpreview",
+      "confidence_score": 1
+    },
+    {
+      "source": "debatemode",
+      "target": "debatemode_debatemode",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "weight": 1,
+      "_src": "debatemode",
+      "_tgt": "debatemode_debatemode",
+      "confidence_score": 1
+    },
+    {
+      "source": "footer",
+      "target": "footer_footer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx",
+      "source_location": "L1",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx",
+          "source_location": "L1"
+        }
+      ],
+      "weight": 1,
+      "_src": "footer",
+      "_tgt": "footer_footer",
+      "confidence_score": 1
+    },
+    {
+      "source": "hero",
+      "target": "hero_hero",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx",
+      "source_location": "L3",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx",
+          "source_location": "L3"
+        }
+      ],
+      "weight": 1,
+      "_src": "hero",
+      "_tgt": "hero_hero",
+      "confidence_score": 1
+    },
+    {
+      "source": "navbar",
+      "target": "navbar_navbar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx",
+      "source_location": "L3",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx",
+          "source_location": "L3"
+        }
+      ],
+      "weight": 1,
+      "_src": "navbar",
+      "_tgt": "navbar_navbar",
+      "confidence_score": 1
+    },
+    {
+      "source": "techstack",
+      "target": "techstack_techstack",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx",
+      "source_location": "L9",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:typescript",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx",
+          "source_location": "L9"
+        }
+      ],
+      "weight": 1,
+      "_src": "techstack",
+      "_tgt": "techstack_techstack",
+      "confidence_score": 1
+    },
+    {
+      "source": "storage_webhookstore",
+      "target": "models_webhookrecord",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L10",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L10"
+        }
+      ],
+      "weight": 1,
+      "_src": "storage_webhookstore",
+      "_tgt": "models_webhookrecord",
+      "confidence_score": 0.5
+    },
+    {
+      "source": "storage_webhookstore",
+      "target": "models_webhookcreate",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+      "source_location": "L14",
+      "layer": "base",
+      "provenance": [
+        {
+          "capability_id": "builtin:extract:python",
+          "stage": "extract",
+          "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py",
+          "source_location": "L14"
+        }
+      ],
+      "weight": 1,
+      "_src": "storage_webhookstore",
+      "_tgt": "models_webhookcreate",
+      "confidence_score": 0.5
+    }
+  ],
+  "hyperedges": [],
+  "community_labels": {
+    "0": "Backend Middleware",
+    "1": "Backend Storage",
+    "2": "Backend Webhooks",
+    "3": "Backend Models",
+    "4": "Backend Errors",
+    "5": "Backend Exception",
+    "6": "Web Dashboard Preview",
+    "7": "Web Page",
+    "8": "Web Hero",
+    "9": "Web Page — Webhook",
+    "10": "Backend Agent",
+    "11": "Web Agents Grid",
+    "12": "Backend Celery Worker",
+    "13": "Web Cta",
+    "14": "Web Debate Mode",
+    "15": "Web Footer",
+    "16": "Backend Health",
+    "17": "Web Layout",
+    "18": "Web Navbar",
+    "19": "Web Next",
+    "20": "Web Tech Stack",
+    "21": "File SVG",
+    "22": "Globe SVG",
+    "23": "Init Py",
+    "24": "Next Env D TypeScript",
+    "25": "Vercel SVG",
+    "26": "Window SVG"
+  },
+  "semantic_anomalies": [
+    {
+      "id": "bridge_node:page_home",
+      "kind": "bridge_node",
+      "severity": "HIGH",
+      "score": 819.9,
+      "summary": "Home() bridges Web Hero and Web Page — Webhook, Web Navbar, Web Agents Grid, Web Debate Mode, Web Page, Web Tech Stack, Web Cta, Web Footer.",
+      "why": "High betweenness centrality (91.100) across 9 communities makes this node a likely dependency chokepoint."
+    },
+    {
+      "id": "bridge_node:storage_webhookstore",
+      "kind": "bridge_node",
+      "severity": "HIGH",
+      "score": 334.5,
+      "summary": "WebhookStore bridges Backend Storage and Backend Webhooks, Backend Models.",
+      "why": "High betweenness centrality (111.500) across 3 communities makes this node a likely dependency chokepoint."
+    },
+    {
+      "id": "bridge_node:page_connectpage",
+      "kind": "bridge_node",
+      "severity": "HIGH",
+      "score": 87.3,
+      "summary": "ConnectPage() bridges Web Page and Web Page — Webhook, Web Navbar.",
+      "why": "High betweenness centrality (29.100) across 3 communities makes this node a likely dependency chokepoint."
+    },
+    {
+      "id": "cross_boundary_edge:WebhookStore->WebhookRecord:uses",
+      "kind": "cross_boundary_edge",
+      "severity": "HIGH",
+      "score": 6,
+      "summary": "WebhookStore → WebhookRecord crosses graph boundaries in an unexpected way.",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities; peripheral node `WebhookRecord` unexpectedly reaches hub `WebhookStore`"
+    },
+    {
+      "id": "cross_boundary_edge:ConnectPage()->Navbar():renders",
+      "kind": "cross_boundary_edge",
+      "severity": "HIGH",
+      "score": 5,
+      "summary": "ConnectPage() → Navbar() crosses graph boundaries in an unexpected way.",
+      "why": "bridges separate communities"
+    }
+  ]
+}

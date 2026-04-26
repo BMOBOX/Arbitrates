@@ -13,3 +13,5 @@ supabase
 # ===== HTTP requests (GitHub API, webhooks, etc.) =====
 requests
 python-dotenv
+
+docker
