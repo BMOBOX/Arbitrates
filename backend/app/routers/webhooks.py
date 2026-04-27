@@ -26,7 +26,7 @@ async def create_webhook(request: Request,
         source = "github"
     
     # Store to Supabase
-    webhook_storesupabase.table("github_webhooks").insert({
+    supabase.table("github_webhooks").insert({
         "event_type": x_github_event,
         "delivery_id": x_github_delivery,
         "payload": payload,
