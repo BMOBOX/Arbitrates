@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
     return [
       {
-        source: "/api/:path*",
-        destination: `${baseUrl}/api/:path*`,
+        source: "/api/webhooks/:path*",
+        destination: `${baseUrl}/api/webhooks/:path*`,
       },
     ];
   },

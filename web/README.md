@@ -2,6 +2,42 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Environment variables
+
+Create a `.env.local` in `web/`:
+
+```bash
+R2_ACCOUNT_ID=your_cloudflare_account_id
+R2_ACCESS_KEY_ID=your_r2_access_key_id
+R2_SECRET_ACCESS_KEY=your_r2_secret_access_key
+
+# backend base URL used by server-side API proxy
+NEXT_PUBLIC_API_URL=http://localhost:8000
+
+# Auth.js / NextAuth (GitHub OAuth)
+AUTH_SECRET=replace_with_a_long_random_secret
+AUTH_GITHUB_ID=your_github_oauth_app_client_id
+AUTH_GITHUB_SECRET=your_github_oauth_app_client_secret
+# for local/dev set this to frontend origin
+AUTH_URL=http://localhost:3000
+# set true when behind proxy/load balancer
+AUTH_TRUST_HOST=true
+# GitHub OAuth callback URL should be:
+# http://localhost:3000/auth/callback/github
+
+# server-side only API key for /api/webhooks proxy (do NOT use NEXT_PUBLIC_)
+NEXT_SERVER_API_KEY=your_backend_api_key
+# optional fallback name
+# API_KEY=your_backend_api_key
+
+# optional fallback names used elsewhere in repo:
+# CF_ACCOUNT_ID=...
+# R2_ACCESS_KEY=...
+# R2_SECRET_KEY=...
+```
+
+The app reads HTML from Cloudflare R2 bucket `arbirates-static-html` with object key pattern `graphs/{job_id}.html`.
+
 First, run the development server:
 
 ```bash

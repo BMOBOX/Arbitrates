@@ -22,7 +22,7 @@ EXEMPT_PATHS: Iterable[str] = (
 
 
 def _get_expected_key() -> str:
-    return os.getenv("API_KEY", "dev-key")
+    return os.getenv("API_KEY")
 
 async def _get_expected_signature(request: Request) -> str | None:
     body = await request.body()
@@ -84,10 +84,6 @@ async def api_key_middleware(request: Request, call_next):
             or not hmac.compare_digest(expected_signature, gh_signature)
         ):
             print("Webhook signature rejected: missing or mismatch", flush=True)
-            return auth_failed()
-    elif path.startswith("/api") and not is_exempt(path):
-        token = _extract_token(request)
-        if not token or token != _get_expected_key():
             return auth_failed()
 
     return await call_next(request)

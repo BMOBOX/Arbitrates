@@ -1,619 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>graphify-ts</title>
+<meta charset="UTF-8">
+<title>graphify - /home/swayam/pi-projects/workspace/Arbitrates/graphify-out/graph.html</title>
 <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 <style>
-  :root {
-    color-scheme: light;
-    --panel-border: #d7dce5;
-    --panel-bg: #fbfcfe;
-    --text-muted: #5b6473;
-    --accent: #2553d8;
-  }
-
-  * { box-sizing: border-box; }
-  body {
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    margin: 0;
-    display: flex;
-    height: 100vh;
-    color: #111827;
-    background: #eef2f7;
-  }
-
-  #graph {
-    flex: 1;
-    min-width: 0;
-    background: linear-gradient(180deg, #f8fbff 0%, #eef2f7 100%);
-  }
-
-  #sidebar {
-    width: 360px;
-    border-left: 1px solid var(--panel-border);
-    padding: 16px;
-    overflow: auto;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(8px);
-  }
-
-  h1, h2, h3, p { margin: 0; }
-  h1 { font-size: 1.15rem; }
-  h2 { font-size: 0.96rem; margin-bottom: 10px; }
-  .lede { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 8px; }
-  .panel {
-    border: 1px solid var(--panel-border);
-    border-radius: 14px;
-    background: var(--panel-bg);
-    padding: 14px;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-  }
-
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  .stat {
-    border-radius: 10px;
-    padding: 10px;
-    background: white;
-    border: 1px solid #e6ebf2;
-  }
-
-  .stat strong {
-    display: block;
-    font-size: 1rem;
-    margin-top: 3px;
-  }
-
-  .muted { color: var(--text-muted); font-size: 0.85rem; }
-  .back-link { color: var(--accent); text-decoration: none; }
-
-  #search {
-    width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    border: 1px solid #cdd6e3;
-    background: white;
-  }
-
-  .toolbar {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
-    flex-wrap: wrap;
-  }
-
-  button {
-    appearance: none;
-    border: 1px solid #cbd5e1;
-    background: white;
-    color: #111827;
-    border-radius: 10px;
-    padding: 8px 10px;
-    cursor: pointer;
-    font: inherit;
-  }
-
-  button:hover { border-color: var(--accent); color: var(--accent); }
-  button.primary {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-  }
-
-  button.small {
-    font-size: 0.82rem;
-    padding: 6px 8px;
-  }
-
-  .list, #legend, #matches {
-    display: grid;
-    gap: 8px;
-  }
-
-  .legend-button,
-  .match-button,
-  .neighbor-button {
-    width: 100%;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .legend-chip {
-    width: 10px;
-    height: 10px;
-    border-radius: 999px;
-    flex: 0 0 auto;
-  }
-
-  .meta-grid {
-    display: grid;
-    grid-template-columns: minmax(90px, auto) 1fr;
-    gap: 8px 12px;
-    font-size: 0.9rem;
-  }
-
-  .meta-grid dt { color: var(--text-muted); }
-  .meta-grid dd { margin: 0; word-break: break-word; }
-  .meta-grid a { color: var(--accent); word-break: break-all; }
-
-  .empty {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .neighbor-meta,
-  .match-meta {
-    color: var(--text-muted);
-    font-size: 0.78rem;
-  }
-
-  code {
-    background: #eef2ff;
-    padding: 0.15rem 0.35rem;
-    border-radius: 6px;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f0f1a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; height: 100vh; overflow: hidden; }
+  #graph { flex: 1; }
+  #sidebar { width: 280px; background: #1a1a2e; border-left: 1px solid #2a2a4e; display: flex; flex-direction: column; overflow: hidden; }
+  #search-wrap { padding: 12px; border-bottom: 1px solid #2a2a4e; }
+  #search { width: 100%; background: #0f0f1a; border: 1px solid #3a3a5e; color: #e0e0e0; padding: 7px 10px; border-radius: 6px; font-size: 13px; outline: none; }
+  #search:focus { border-color: #4E79A7; }
+  #search-results { max-height: 140px; overflow-y: auto; padding: 4px 12px; border-bottom: 1px solid #2a2a4e; display: none; }
+  .search-item { padding: 4px 6px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .search-item:hover { background: #2a2a4e; }
+  #info-panel { padding: 14px; border-bottom: 1px solid #2a2a4e; min-height: 140px; }
+  #info-panel h3 { font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  #info-content { font-size: 13px; color: #ccc; line-height: 1.6; }
+  #info-content .field { margin-bottom: 5px; }
+  #info-content .field b { color: #e0e0e0; }
+  #info-content .empty { color: #555; font-style: italic; }
+  .neighbor-link { display: block; padding: 2px 6px; margin: 2px 0; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-left: 3px solid #333; }
+  .neighbor-link:hover { background: #2a2a4e; }
+  #neighbors-list { max-height: 160px; overflow-y: auto; margin-top: 4px; }
+  #legend-wrap { flex: 1; overflow-y: auto; padding: 12px; }
+  #legend-wrap h3 { font-size: 13px; color: #aaa; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .legend-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; border-radius: 4px; font-size: 12px; }
+  .legend-item:hover { background: #2a2a4e; padding-left: 4px; }
+  .legend-item.dimmed { opacity: 0.35; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .legend-count { color: #666; font-size: 11px; }
+  #stats { padding: 10px 14px; border-top: 1px solid #2a2a4e; font-size: 11px; color: #555; }
 </style>
 </head>
 <body>
 <div id="graph"></div>
 <div id="sidebar">
-  <section class="panel">
-    
-    <h1>graphify-ts</h1>
-    <p class="lede">Explore the generated graph, inspect node evidence, and hop through neighbors without leaving the HTML export.</p>
-    <div class="stats" id="stats"></div>
-  </section>
-
-  <section class="panel">
-    <h2>Search</h2>
-    <input id="search" placeholder="Search nodes by label or file..." />
-    <div id="matches" class="list"></div>
-    <div class="toolbar">
-      <button id="resetView" class="small">Reset view</button>
-      <button id="clearSelection" class="small">Clear selection</button>
-    </div>
-  </section>
-
-  <section class="panel">
-    <h2>Selected node</h2>
-    <p id="selectionEmpty" class="empty">Click a node in the graph, choose a search match, or follow a neighbor to inspect it here.</p>
-    <div id="selectionDetails" hidden>
-      <h3 id="selectedLabel"></h3>
-      <p id="selectedSummary" class="lede"></p>
-      <dl class="meta-grid">
-        <dt>Source</dt><dd id="selectedSource"></dd>
-        <dt id="selectedDocumentTitleLabel" hidden>Title</dt><dd id="selectedDocumentTitle" hidden></dd>
-        <dt id="selectedSourceUrlLabel" hidden>Source URL</dt><dd id="selectedSourceUrl" hidden></dd>
-        <dt id="selectedAuthorLabel" hidden>Author</dt><dd id="selectedAuthor" hidden></dd>
-        <dt id="selectedContributorLabel" hidden>Contributor</dt><dd id="selectedContributor" hidden></dd>
-        <dt id="selectedCapturedAtLabel" hidden>Captured</dt><dd id="selectedCapturedAt" hidden></dd>
-        <dt id="selectedQuestionLabel" hidden>Question</dt><dd id="selectedQuestion" hidden></dd>
-        <dt id="selectedArxivIdLabel" hidden>arXiv</dt><dd id="selectedArxivId" hidden></dd>
-        <dt>Type</dt><dd id="selectedType"></dd>
-        <dt>Community</dt><dd id="selectedCommunity"></dd>
-        <dt>Confidence</dt><dd id="selectedConfidence"></dd>
-        <dt>Degree</dt><dd id="selectedDegree"></dd>
-      </dl>
-      <div class="toolbar">
-        <button id="focusNeighborhood" class="primary small">Focus neighborhood</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel">
-    <h2>Neighbors</h2>
-    <p id="neighborsEmpty" class="empty">Neighbor navigation appears here once a node is selected.</p>
-    <div id="neighborList" class="list"></div>
-  </section>
-
-  <section class="panel">
-    <h2>Communities</h2>
+  <div id="search-wrap">
+    <input id="search" type="text" placeholder="Search nodes..." autocomplete="off">
+    <div id="search-results"></div>
+  </div>
+  <div id="info-panel">
+    <h3>Node Info</h3>
+    <div id="info-content"><span class="empty">Click a node to inspect it</span></div>
+  </div>
+  <div id="legend-wrap">
+    <h3>Communities</h3>
     <div id="legend"></div>
-  </section>
+  </div>
+  <div id="stats">75 nodes &middot; 83 edges &middot; 25 communities</div>
 </div>
 <script>
-const RAW_NODES = [{"id":"init","label":"__init__.py","title":"__init__.py","color":{"background":"#76B7B2","border":"#76B7B2"},"community":23,"community_name":"Init Py","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/__init__.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":0,"confidence":"EXTRACTED"},{"id":"errors","label":"errors.py","title":"errors.py","color":{"background":"#59A14F","border":"#59A14F"},"community":4,"community_name":"Backend Errors","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":4,"confidence":"EXTRACTED"},{"id":"errors_not_found","label":"not_found()","title":"not_found()","color":{"background":"#59A14F","border":"#59A14F"},"community":4,"community_name":"Backend Errors","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py","source_location":"L4","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"errors_bad_request","label":"bad_request()","title":"bad_request()","color":{"background":"#59A14F","border":"#59A14F"},"community":4,"community_name":"Backend Errors","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py","source_location":"L8","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"errors_unauthorized","label":"unauthorized()","title":"unauthorized()","color":{"background":"#59A14F","border":"#59A14F"},"community":4,"community_name":"Backend Errors","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py","source_location":"L12","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"main","label":"main.py","title":"main.py","color":{"background":"#EDC948","border":"#EDC948"},"community":5,"community_name":"Backend Exception","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":3,"confidence":"EXTRACTED"},{"id":"main_http_exception_handler","label":"http_exception_handler()","title":"http_exception_handler()","color":{"background":"#EDC948","border":"#EDC948"},"community":5,"community_name":"Backend Exception","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py","source_location":"L19","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"main_validation_exception_handler","label":"validation_exception_handler()","title":"validation_exception_handler()","color":{"background":"#EDC948","border":"#EDC948"},"community":5,"community_name":"Backend Exception","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py","source_location":"L30","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"main_unhandled_exception_handler","label":"unhandled_exception_handler()","title":"unhandled_exception_handler()","color":{"background":"#EDC948","border":"#EDC948"},"community":5,"community_name":"Backend Exception","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py","source_location":"L42","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"middleware","label":"middleware.py","title":"middleware.py","color":{"background":"#4E79A7","border":"#4E79A7"},"community":0,"community_name":"Backend Middleware","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":8,"confidence":"EXTRACTED"},{"id":"middleware_get_expected_key","label":"_get_expected_key()","title":"_get_expected_key()","color":{"background":"#4E79A7","border":"#4E79A7"},"community":0,"community_name":"Backend Middleware","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py","source_location":"L24","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"middleware_get_expected_signature","label":"_get_expected_signature()","title":"_get_expected_signature()","color":{"background":"#4E79A7","border":"#4E79A7"},"community":0,"community_name":"Backend Middleware","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py","source_location":"L27","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"middleware_extract_signature","label":"_extract_signature()","title":"_extract_signature()","color":{"background":"#4E79A7","border":"#4E79A7"},"community":0,"community_name":"Backend Middleware","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py","source_location":"L42","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"middleware_extract_token","label":"_extract_token()","title":"_extract_token()","color":{"background":"#4E79A7","border":"#4E79A7"},"community":0,"community_name":"Backend Middleware","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py","source_location":"L49","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"middleware_is_exempt","label":"is_exempt()","title":"is_exempt()","color":{"background":"#4E79A7","border":"#4E79A7"},"community":0,"community_name":"Backend Middleware","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py","source_location":"L60","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"middleware_auth_failed","label":"auth_failed()","title":"auth_failed()","color":{"background":"#4E79A7","border":"#4E79A7"},"community":0,"community_name":"Backend Middleware","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py","source_location":"L66","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"middleware_api_key_middleware","label":"api_key_middleware()","title":"api_key_middleware()","color":{"background":"#4E79A7","border":"#4E79A7"},"community":0,"community_name":"Backend Middleware","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py","source_location":"L73","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":7,"confidence":"EXTRACTED"},{"id":"models","label":"models.py","title":"models.py","color":{"background":"#76B7B2","border":"#76B7B2"},"community":3,"community_name":"Backend Models","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":9,"confidence":"EXTRACTED"},{"id":"models_apiresponse","label":"ApiResponse","title":"ApiResponse","color":{"background":"#76B7B2","border":"#76B7B2"},"community":3,"community_name":"Backend Models","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py","source_location":"L7","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"models_errordetail","label":"ErrorDetail","title":"ErrorDetail","color":{"background":"#76B7B2","border":"#76B7B2"},"community":3,"community_name":"Backend Models","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py","source_location":"L13","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"models_webhookcreate","label":"WebhookCreate","title":"WebhookCreate","color":{"background":"#F28E2B","border":"#F28E2B"},"community":1,"community_name":"Backend Storage","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py","source_location":"L19","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"models_webhookrecord","label":"WebhookRecord","title":"WebhookRecord","color":{"background":"#76B7B2","border":"#76B7B2"},"community":3,"community_name":"Backend Models","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py","source_location":"L24","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"models_webhooklist","label":"WebhookList","title":"WebhookList","color":{"background":"#76B7B2","border":"#76B7B2"},"community":3,"community_name":"Backend Models","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py","source_location":"L31","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"health","label":"health.py","title":"health.py","color":{"background":"#B07AA1","border":"#B07AA1"},"community":16,"community_name":"Backend Health","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"health_read_root","label":"read_root()","title":"read_root()","color":{"background":"#B07AA1","border":"#B07AA1"},"community":16,"community_name":"Backend Health","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py","source_location":"L9","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"webhooks","label":"webhooks.py","title":"webhooks.py","color":{"background":"#E15759","border":"#E15759"},"community":2,"community_name":"Backend Webhooks","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":7,"confidence":"EXTRACTED"},{"id":"webhooks_create_webhook","label":"create_webhook()","title":"create_webhook()","color":{"background":"#E15759","border":"#E15759"},"community":2,"community_name":"Backend Webhooks","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py","source_location":"L12","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"webhooks_list_webhooks","label":"list_webhooks()","title":"list_webhooks()","color":{"background":"#E15759","border":"#E15759"},"community":2,"community_name":"Backend Webhooks","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py","source_location":"L43","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"webhooks_get_webhook","label":"get_webhook()","title":"get_webhook()","color":{"background":"#E15759","border":"#E15759"},"community":2,"community_name":"Backend Webhooks","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py","source_location":"L50","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"storage","label":"storage.py","title":"storage.py","color":{"background":"#E15759","border":"#E15759"},"community":2,"community_name":"Backend Webhooks","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":3,"confidence":"EXTRACTED"},{"id":"storage_webhookstore","label":"WebhookStore","title":"WebhookStore","color":{"background":"#F28E2B","border":"#F28E2B"},"community":1,"community_name":"Backend Storage","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py","source_location":"L8","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":7,"confidence":"EXTRACTED"},{"id":"storage_webhookstore_init","label":".__init__()","title":".__init__()","color":{"background":"#F28E2B","border":"#F28E2B"},"community":1,"community_name":"Backend Storage","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py","source_location":"L9","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"storage_webhookstore_add","label":".add()","title":".add()","color":{"background":"#F28E2B","border":"#F28E2B"},"community":1,"community_name":"Backend Storage","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py","source_location":"L14","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"storage_webhookstore_list","label":".list()","title":".list()","color":{"background":"#F28E2B","border":"#F28E2B"},"community":1,"community_name":"Backend Storage","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py","source_location":"L26","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"storage_webhookstore_get","label":".get()","title":".get()","color":{"background":"#F28E2B","border":"#F28E2B"},"community":1,"community_name":"Backend Storage","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py","source_location":"L30","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"supabase_client","label":"supabase_client.py","title":"supabase_client.py","color":{"background":"#E15759","border":"#E15759"},"community":2,"community_name":"Backend Webhooks","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/supabase_client.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"agent","label":"agent.py","title":"agent.py","color":{"background":"#4E79A7","border":"#4E79A7"},"community":10,"community_name":"Backend Agent","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"agent_process_webhook","label":"process_webhook()","title":"process_webhook()","color":{"background":"#4E79A7","border":"#4E79A7"},"community":10,"community_name":"Backend Agent","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py","source_location":"L4","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"celery_worker","label":"celery_worker.py","title":"celery_worker.py","color":{"background":"#E15759","border":"#E15759"},"community":12,"community_name":"Backend Celery Worker","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"celery_worker_resolve_broker_url","label":"resolve_broker_url()","title":"resolve_broker_url()","color":{"background":"#E15759","border":"#E15759"},"community":12,"community_name":"Backend Celery Worker","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py","source_location":"L7","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"next_env_d","label":"next-env.d.ts","title":"next-env.d.ts","color":{"background":"#59A14F","border":"#59A14F"},"community":24,"community_name":"Next Env D TypeScript","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/next-env.d.ts","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":0,"confidence":"EXTRACTED"},{"id":"next_config","label":"next.config.ts","title":"next.config.ts","color":{"background":"#BAB0AC","border":"#BAB0AC"},"community":19,"community_name":"Web Next","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/next.config.ts","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"page","label":"page.tsx","title":"page.tsx","color":{"background":"#BAB0AC","border":"#BAB0AC"},"community":9,"community_name":"Web Page — Webhook","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":12,"confidence":"EXTRACTED"},{"id":"page_webhookrecord","label":"WebhookRecord","title":"WebhookRecord","color":{"background":"#BAB0AC","border":"#BAB0AC"},"community":9,"community_name":"Web Page — Webhook","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx","source_location":"L8","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"page_webhooklistresponse","label":"WebhookListResponse","title":"WebhookListResponse","color":{"background":"#BAB0AC","border":"#BAB0AC"},"community":9,"community_name":"Web Page — Webhook","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx","source_location":"L15","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"page_connectpage","label":"ConnectPage()","title":"ConnectPage()","color":{"background":"#FF9DA7","border":"#FF9DA7"},"community":7,"community_name":"Web Page","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx","source_location":"L24","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":4,"confidence":"EXTRACTED"},{"id":"page_connectpage_loadwebhooks","label":"loadWebhooks()","title":"loadWebhooks()","color":{"background":"#FF9DA7","border":"#FF9DA7"},"community":7,"community_name":"Web Page","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx","source_location":"L32","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"layout","label":"layout.tsx","title":"layout.tsx","color":{"background":"#FF9DA7","border":"#FF9DA7"},"community":17,"community_name":"Web Layout","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"layout_rootlayout","label":"RootLayout()","title":"RootLayout()","color":{"background":"#FF9DA7","border":"#FF9DA7"},"community":17,"community_name":"Web Layout","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx","source_location":"L28","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"page_home","label":"Home()","title":"Home()","color":{"background":"#9C755F","border":"#9C755F"},"community":8,"community_name":"Web Hero","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx","source_location":"L10","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":9,"confidence":"EXTRACTED"},{"id":"agentsgrid","label":"AgentsGrid.tsx","title":"AgentsGrid.tsx","color":{"background":"#F28E2B","border":"#F28E2B"},"community":11,"community_name":"Web Agents Grid","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/AgentsGrid.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"agentsgrid_agentsgrid","label":"AgentsGrid()","title":"AgentsGrid()","color":{"background":"#F28E2B","border":"#F28E2B"},"community":11,"community_name":"Web Agents Grid","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/AgentsGrid.tsx","source_location":"L52","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"cta","label":"CTA.tsx","title":"CTA.tsx","color":{"background":"#76B7B2","border":"#76B7B2"},"community":13,"community_name":"Web Cta","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"cta_cta","label":"CTA()","title":"CTA()","color":{"background":"#76B7B2","border":"#76B7B2"},"community":13,"community_name":"Web Cta","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"dashboardpreview","label":"DashboardPreview.tsx","title":"DashboardPreview.tsx","color":{"background":"#B07AA1","border":"#B07AA1"},"community":6,"community_name":"Web Dashboard Preview","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":4,"confidence":"EXTRACTED"},{"id":"dashboardpreview_webhookrecord","label":"WebhookRecord","title":"WebhookRecord","color":{"background":"#B07AA1","border":"#B07AA1"},"community":6,"community_name":"Web Dashboard Preview","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx","source_location":"L26","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"dashboardpreview_dashboardpreviewprops","label":"DashboardPreviewProps","title":"DashboardPreviewProps","color":{"background":"#B07AA1","border":"#B07AA1"},"community":6,"community_name":"Web Dashboard Preview","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx","source_location":"L30","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":1,"confidence":"EXTRACTED"},{"id":"dashboardpreview_dashboardpreview","label":"DashboardPreview()","title":"DashboardPreview()","color":{"background":"#FF9DA7","border":"#FF9DA7"},"community":7,"community_name":"Web Page","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx","source_location":"L35","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":3,"confidence":"EXTRACTED"},{"id":"debatemode","label":"DebateMode.tsx","title":"DebateMode.tsx","color":{"background":"#59A14F","border":"#59A14F"},"community":14,"community_name":"Web Debate Mode","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"debatemode_debatemode","label":"DebateMode()","title":"DebateMode()","color":{"background":"#59A14F","border":"#59A14F"},"community":14,"community_name":"Web Debate Mode","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"footer","label":"Footer.tsx","title":"Footer.tsx","color":{"background":"#EDC948","border":"#EDC948"},"community":15,"community_name":"Web Footer","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"footer_footer","label":"Footer()","title":"Footer()","color":{"background":"#EDC948","border":"#EDC948"},"community":15,"community_name":"Web Footer","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"hero","label":"Hero.tsx","title":"Hero.tsx","color":{"background":"#9C755F","border":"#9C755F"},"community":8,"community_name":"Web Hero","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"hero_hero","label":"Hero()","title":"Hero()","color":{"background":"#9C755F","border":"#9C755F"},"community":8,"community_name":"Web Hero","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx","source_location":"L3","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"navbar","label":"Navbar.tsx","title":"Navbar.tsx","color":{"background":"#9C755F","border":"#9C755F"},"community":18,"community_name":"Web Navbar","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"navbar_navbar","label":"Navbar()","title":"Navbar()","color":{"background":"#9C755F","border":"#9C755F"},"community":18,"community_name":"Web Navbar","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx","source_location":"L3","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":3,"confidence":"EXTRACTED"},{"id":"techstack","label":"TechStack.tsx","title":"TechStack.tsx","color":{"background":"#4E79A7","border":"#4E79A7"},"community":20,"community_name":"Web Tech Stack","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"techstack_techstack","label":"TechStack()","title":"TechStack()","color":{"background":"#4E79A7","border":"#4E79A7"},"community":20,"community_name":"Web Tech Stack","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx","source_location":"L9","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"code","degree":2,"confidence":"EXTRACTED"},{"id":"file","label":"file.svg","title":"file.svg","color":{"background":"#F28E2B","border":"#F28E2B"},"community":21,"community_name":"File SVG","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/public/file.svg","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"image","degree":0,"confidence":"EXTRACTED"},{"id":"globe","label":"globe.svg","title":"globe.svg","color":{"background":"#E15759","border":"#E15759"},"community":22,"community_name":"Globe SVG","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/public/globe.svg","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"image","degree":0,"confidence":"EXTRACTED"},{"id":"next","label":"next.svg","title":"next.svg","color":{"background":"#BAB0AC","border":"#BAB0AC"},"community":19,"community_name":"Web Next","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/public/next.svg","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"image","degree":2,"confidence":"EXTRACTED"},{"id":"vercel","label":"vercel.svg","title":"vercel.svg","color":{"background":"#EDC948","border":"#EDC948"},"community":25,"community_name":"Vercel SVG","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/public/vercel.svg","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"image","degree":0,"confidence":"EXTRACTED"},{"id":"window","label":"window.svg","title":"window.svg","color":{"background":"#B07AA1","border":"#B07AA1"},"community":26,"community_name":"Window SVG","source_file":"/home/swayam/pi-projects/workspace/Arbitrates/web/public/window.svg","source_location":"L1","source_url":"","safe_source_url":"","document_title":"","author":"","contributor":"","captured_at":"","question":"","arxiv_id":"","file_type":"image","degree":0,"confidence":"EXTRACTED"}];
-const RAW_EDGES = [{"from":"errors","to":"errors_not_found","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"errors","to":"errors_bad_request","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"errors","to":"errors_unauthorized","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"main","to":"main_http_exception_handler","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"main","to":"main_validation_exception_handler","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"main","to":"main_unhandled_exception_handler","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware","to":"models","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware","to":"middleware_get_expected_key","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware","to":"middleware_get_expected_signature","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware","to":"middleware_extract_signature","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware","to":"middleware_extract_token","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware","to":"middleware_is_exempt","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware","to":"middleware_auth_failed","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware","to":"middleware_api_key_middleware","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware_api_key_middleware","to":"middleware_is_exempt","label":"calls","title":"calls [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware_api_key_middleware","to":"middleware_extract_signature","label":"calls","title":"calls [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware_api_key_middleware","to":"middleware_get_expected_signature","label":"calls","title":"calls [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware_api_key_middleware","to":"middleware_auth_failed","label":"calls","title":"calls [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware_api_key_middleware","to":"middleware_extract_token","label":"calls","title":"calls [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"middleware_api_key_middleware","to":"middleware_get_expected_key","label":"calls","title":"calls [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"models","to":"models_apiresponse","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"models","to":"models_errordetail","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"models","to":"models_webhookcreate","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"models","to":"models_webhookrecord","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"models","to":"models_webhooklist","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"health","to":"models","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"health","to":"health_read_root","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"webhooks","to":"errors","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"webhooks","to":"models","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"webhooks","to":"storage","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"webhooks","to":"supabase_client","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"webhooks","to":"webhooks_create_webhook","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"webhooks","to":"webhooks_list_webhooks","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"webhooks","to":"webhooks_get_webhook","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"storage","to":"models","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"storage","to":"storage_webhookstore","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"storage_webhookstore","to":"storage_webhookstore_init","label":"method","title":"method [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"storage_webhookstore","to":"storage_webhookstore_add","label":"method","title":"method [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"storage_webhookstore","to":"storage_webhookstore_list","label":"method","title":"method [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"storage_webhookstore","to":"storage_webhookstore_get","label":"method","title":"method [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"agent","to":"agent_process_webhook","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"celery_worker","to":"celery_worker_resolve_broker_url","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"next_config","to":"next","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"dashboardpreview","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"navbar","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"page_webhookrecord","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"page_webhooklistresponse","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"page_connectpage","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_connectpage","to":"page_connectpage_loadwebhooks","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_connectpage","to":"navbar_navbar","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_connectpage","to":"dashboardpreview_dashboardpreview","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"layout","to":"next","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"layout","to":"layout_rootlayout","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"agentsgrid","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"cta","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"debatemode","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"footer","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"hero","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"techstack","label":"imports_from","title":"imports_from [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page","to":"page_home","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_home","to":"navbar_navbar","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_home","to":"hero_hero","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_home","to":"agentsgrid_agentsgrid","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_home","to":"debatemode_debatemode","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_home","to":"dashboardpreview_dashboardpreview","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_home","to":"techstack_techstack","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_home","to":"cta_cta","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"page_home","to":"footer_footer","label":"renders","title":"renders [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"agentsgrid","to":"agentsgrid_agentsgrid","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"cta","to":"cta_cta","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"dashboardpreview","to":"dashboardpreview_webhookrecord","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"dashboardpreview","to":"dashboardpreview_dashboardpreviewprops","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"dashboardpreview","to":"dashboardpreview_dashboardpreview","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"debatemode","to":"debatemode_debatemode","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"footer","to":"footer_footer","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"hero","to":"hero_hero","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"navbar","to":"navbar_navbar","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"techstack","to":"techstack_techstack","label":"contains","title":"contains [EXTRACTED]","confidence":"EXTRACTED","dashes":false},{"from":"storage_webhookstore","to":"models_webhookrecord","label":"uses","title":"uses [INFERRED]","confidence":"INFERRED","dashes":true},{"from":"storage_webhookstore","to":"models_webhookcreate","label":"uses","title":"uses [INFERRED]","confidence":"INFERRED","dashes":true}];
-const LEGEND = [{"cid":0,"color":"#4E79A7","label":"Backend Middleware","count":8},{"cid":1,"color":"#F28E2B","label":"Backend Storage","count":6},{"cid":2,"color":"#E15759","label":"Backend Webhooks","count":6},{"cid":3,"color":"#76B7B2","label":"Backend Models","count":5},{"cid":4,"color":"#59A14F","label":"Backend Errors","count":4},{"cid":5,"color":"#EDC948","label":"Backend Exception","count":4},{"cid":6,"color":"#B07AA1","label":"Web Dashboard Preview","count":3},{"cid":7,"color":"#FF9DA7","label":"Web Page","count":3},{"cid":8,"color":"#9C755F","label":"Web Hero","count":3},{"cid":9,"color":"#BAB0AC","label":"Web Page — Webhook","count":3},{"cid":10,"color":"#4E79A7","label":"Backend Agent","count":2},{"cid":11,"color":"#F28E2B","label":"Web Agents Grid","count":2},{"cid":12,"color":"#E15759","label":"Backend Celery Worker","count":2},{"cid":13,"color":"#76B7B2","label":"Web Cta","count":2},{"cid":14,"color":"#59A14F","label":"Web Debate Mode","count":2},{"cid":15,"color":"#EDC948","label":"Web Footer","count":2},{"cid":16,"color":"#B07AA1","label":"Backend Health","count":2},{"cid":17,"color":"#FF9DA7","label":"Web Layout","count":2},{"cid":18,"color":"#9C755F","label":"Web Navbar","count":2},{"cid":19,"color":"#BAB0AC","label":"Web Next","count":2},{"cid":20,"color":"#4E79A7","label":"Web Tech Stack","count":2},{"cid":21,"color":"#F28E2B","label":"File SVG","count":1},{"cid":22,"color":"#E15759","label":"Globe SVG","count":1},{"cid":23,"color":"#76B7B2","label":"Init Py","count":1},{"cid":24,"color":"#59A14F","label":"Next Env D TypeScript","count":1},{"cid":25,"color":"#EDC948","label":"Vercel SVG","count":1},{"cid":26,"color":"#B07AA1","label":"Window SVG","count":1}];
-const STATS = {"nodes":73,"edges":80,"communities":27};
-const IS_DIRECTED = false;
-const EDGE_ARROWS = {};
+const RAW_NODES = [{"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_supabase_client_py", "label": "supabase_client.py", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "supabase_client.py", "community": 1, "community_name": "Community 1", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/supabase_client.py", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_storage_py", "label": "storage.py", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "storage.py", "community": 1, "community_name": "Community 1", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py", "file_type": "code", "degree": 3}, {"id": "storage_webhookstore", "label": "WebhookStore", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 31.0, "font": {"size": 12, "color": "#ffffff"}, "title": "WebhookStore", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py", "file_type": "code", "degree": 7}, {"id": "storage_webhookstore_init", "label": ".__init__()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": ".__init__()", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py", "file_type": "code", "degree": 1}, {"id": "storage_webhookstore_add", "label": ".add()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": ".add()", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py", "file_type": "code", "degree": 2}, {"id": "storage_webhookstore_list", "label": ".list()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": ".list()", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py", "file_type": "code", "degree": 2}, {"id": "storage_webhookstore_get", "label": ".get()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 25.0, "font": {"size": 12, "color": "#ffffff"}, "title": ".get()", "community": 2, "community_name": "Community 2", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/storage.py", "file_type": "code", "degree": 5}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_errors_py", "label": "errors.py", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "errors.py", "community": 1, "community_name": "Community 1", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py", "file_type": "code", "degree": 4}, {"id": "errors_not_found", "label": "not_found()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "not_found()", "community": 1, "community_name": "Community 1", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py", "file_type": "code", "degree": 2}, {"id": "errors_bad_request", "label": "bad_request()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "bad_request()", "community": 1, "community_name": "Community 1", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py", "file_type": "code", "degree": 1}, {"id": "errors_unauthorized", "label": "unauthorized()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "unauthorized()", "community": 1, "community_name": "Community 1", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/errors.py", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_init_py", "label": "__init__.py", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "__init__.py", "community": 15, "community_name": "Community 15", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/__init__.py", "file_type": "code", "degree": 0}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "label": "models.py", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 37.0, "font": {"size": 12, "color": "#ffffff"}, "title": "models.py", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py", "file_type": "code", "degree": 9}, {"id": "models_apiresponse", "label": "ApiResponse", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 40.0, "font": {"size": 12, "color": "#ffffff"}, "title": "ApiResponse", "community": 3, "community_name": "Community 3", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py", "file_type": "code", "degree": 10}, {"id": "basemodel", "label": "BaseModel", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 25.0, "font": {"size": 12, "color": "#ffffff"}, "title": "BaseModel", "community": 0, "community_name": "Community 0", "source_file": "", "file_type": "code", "degree": 5}, {"id": "models_errordetail", "label": "ErrorDetail", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "ErrorDetail", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py", "file_type": "code", "degree": 2}, {"id": "models_webhookcreate", "label": "WebhookCreate", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "WebhookCreate", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py", "file_type": "code", "degree": 3}, {"id": "models_webhookrecord", "label": "WebhookRecord", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "WebhookRecord", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py", "file_type": "code", "degree": 4}, {"id": "models_webhooklist", "label": "WebhookList", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "WebhookList", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/models.py", "file_type": "code", "degree": 3}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_main_py", "label": "main.py", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "main.py", "community": 3, "community_name": "Community 3", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py", "file_type": "code", "degree": 3}, {"id": "main_http_exception_handler", "label": "http_exception_handler()", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "http_exception_handler()", "community": 3, "community_name": "Community 3", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py", "file_type": "code", "degree": 2}, {"id": "main_validation_exception_handler", "label": "validation_exception_handler()", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "validation_exception_handler()", "community": 3, "community_name": "Community 3", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py", "file_type": "code", "degree": 2}, {"id": "main_unhandled_exception_handler", "label": "unhandled_exception_handler()", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "unhandled_exception_handler()", "community": 3, "community_name": "Community 3", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/main.py", "file_type": "code", "degree": 2}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_middleware_py", "label": "middleware.py", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 34.0, "font": {"size": 12, "color": "#ffffff"}, "title": "middleware.py", "community": 2, "community_name": "Community 2", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py", "file_type": "code", "degree": 8}, {"id": "middleware_get_expected_key", "label": "_get_expected_key()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "_get_expected_key()", "community": 2, "community_name": "Community 2", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py", "file_type": "code", "degree": 2}, {"id": "middleware_get_expected_signature", "label": "_get_expected_signature()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "_get_expected_signature()", "community": 2, "community_name": "Community 2", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py", "file_type": "code", "degree": 2}, {"id": "middleware_extract_signature", "label": "_extract_signature()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "_extract_signature()", "community": 2, "community_name": "Community 2", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py", "file_type": "code", "degree": 3}, {"id": "middleware_extract_token", "label": "_extract_token()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "_extract_token()", "community": 2, "community_name": "Community 2", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py", "file_type": "code", "degree": 3}, {"id": "middleware_is_exempt", "label": "is_exempt()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "is_exempt()", "community": 2, "community_name": "Community 2", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py", "file_type": "code", "degree": 2}, {"id": "middleware_auth_failed", "label": "auth_failed()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "auth_failed()", "community": 2, "community_name": "Community 2", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py", "file_type": "code", "degree": 3}, {"id": "middleware_api_key_middleware", "label": "api_key_middleware()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 31.0, "font": {"size": 12, "color": "#ffffff"}, "title": "api_key_middleware()", "community": 2, "community_name": "Community 2", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/middleware.py", "file_type": "code", "degree": 7}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_webhooks_py", "label": "webhooks.py", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 31.0, "font": {"size": 12, "color": "#ffffff"}, "title": "webhooks.py", "community": 1, "community_name": "Community 1", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py", "file_type": "code", "degree": 7}, {"id": "webhooks_create_webhook", "label": "create_webhook()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "create_webhook()", "community": 1, "community_name": "Community 1", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py", "file_type": "code", "degree": 3}, {"id": "webhooks_list_webhooks", "label": "list_webhooks()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "list_webhooks()", "community": 0, "community_name": "Community 0", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py", "file_type": "code", "degree": 4}, {"id": "webhooks_get_webhook", "label": "get_webhook()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "get_webhook()", "community": 1, "community_name": "Community 1", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/webhooks.py", "file_type": "code", "degree": 4}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_init_py", "label": "__init__.py", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "__init__.py", "community": 16, "community_name": "Community 16", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/__init__.py", "file_type": "code", "degree": 0}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_health_py", "label": "health.py", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "health.py", "community": 3, "community_name": "Community 3", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py", "file_type": "code", "degree": 2}, {"id": "health_read_root", "label": "read_root()", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "read_root()", "community": 3, "community_name": "Community 3", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/routers/health.py", "file_type": "code", "degree": 2}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_workers_celery_worker_py", "label": "celery_worker.py", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "celery_worker.py", "community": 4, "community_name": "Community 4", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py", "file_type": "code", "degree": 2}, {"id": "celery_worker_resolve_broker_url", "label": "resolve_broker_url()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "resolve_broker_url()", "community": 4, "community_name": "Community 4", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/workers/celery_worker.py", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_services_docker_service_py", "label": "docker_service.py", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "docker_service.py", "community": 4, "community_name": "Community 4", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/services/docker_service.py", "file_type": "code", "degree": 3}, {"id": "docker_service_upload_to_r2", "label": "upload_to_r2()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "upload_to_r2()", "community": 4, "community_name": "Community 4", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/services/docker_service.py", "file_type": "code", "degree": 2}, {"id": "docker_service_run_container", "label": "run_container()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "run_container()", "community": 4, "community_name": "Community 4", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/services/docker_service.py", "file_type": "code", "degree": 3}, {"id": "home_swayam_pi_projects_workspace_arbitrates_backend_app_tasks_agent_py", "label": "agent.py", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 19.0, "font": {"size": 12, "color": "#ffffff"}, "title": "agent.py", "community": 4, "community_name": "Community 4", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py", "file_type": "code", "degree": 3}, {"id": "agent_process_webhook", "label": "process_webhook()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "process_webhook()", "community": 4, "community_name": "Community 4", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/backend/app/tasks/agent.py", "file_type": "code", "degree": 2}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_eslint_config_mjs", "label": "eslint.config.mjs", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "eslint.config.mjs", "community": 17, "community_name": "Community 17", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/eslint.config.mjs", "file_type": "code", "degree": 0}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_next_env_d_ts", "label": "next-env.d.ts", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "next-env.d.ts", "community": 18, "community_name": "Community 18", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/next-env.d.ts", "file_type": "code", "degree": 0}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_next_config_ts", "label": "next.config.ts", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "next.config.ts", "community": 5, "community_name": "Community 5", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/next.config.ts", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_postcss_config_mjs", "label": "postcss.config.mjs", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "postcss.config.mjs", "community": 19, "community_name": "Community 19", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/postcss.config.mjs", "file_type": "code", "degree": 0}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_app_layout_tsx", "label": "layout.tsx", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "layout.tsx", "community": 5, "community_name": "Community 5", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx", "file_type": "code", "degree": 2}, {"id": "layout_rootlayout", "label": "RootLayout()", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "RootLayout()", "community": 5, "community_name": "Community 5", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/layout.tsx", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_app_page_tsx", "label": "page.tsx", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "page.tsx", "community": 6, "community_name": "Community 6", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx", "file_type": "code", "degree": 1}, {"id": "page_home", "label": "Home()", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Home()", "community": 6, "community_name": "Community 6", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/page.tsx", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_app_connect_page_tsx", "label": "page.tsx", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "page.tsx", "community": 7, "community_name": "Community 7", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx", "file_type": "code", "degree": 1}, {"id": "page_loadwebhooks", "label": "loadWebhooks()", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "loadWebhooks()", "community": 7, "community_name": "Community 7", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/app/connect/page.tsx", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_navbar_tsx", "label": "Navbar.tsx", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Navbar.tsx", "community": 8, "community_name": "Community 8", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx", "file_type": "code", "degree": 1}, {"id": "navbar_navbar", "label": "Navbar()", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Navbar()", "community": 8, "community_name": "Community 8", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Navbar.tsx", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_hero_tsx", "label": "Hero.tsx", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Hero.tsx", "community": 9, "community_name": "Community 9", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx", "file_type": "code", "degree": 1}, {"id": "hero_hero", "label": "Hero()", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Hero()", "community": 9, "community_name": "Community 9", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Hero.tsx", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_cta_tsx", "label": "CTA.tsx", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "CTA.tsx", "community": 10, "community_name": "Community 10", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx", "file_type": "code", "degree": 1}, {"id": "cta_cta", "label": "CTA()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "CTA()", "community": 10, "community_name": "Community 10", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/CTA.tsx", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_dashboardpreview_tsx", "label": "DashboardPreview.tsx", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "DashboardPreview.tsx", "community": 11, "community_name": "Community 11", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx", "file_type": "code", "degree": 1}, {"id": "dashboardpreview_dashboardpreview", "label": "DashboardPreview()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "DashboardPreview()", "community": 11, "community_name": "Community 11", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DashboardPreview.tsx", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_debatemode_tsx", "label": "DebateMode.tsx", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "DebateMode.tsx", "community": 12, "community_name": "Community 12", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx", "file_type": "code", "degree": 1}, {"id": "debatemode_debatemode", "label": "DebateMode()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "DebateMode()", "community": 12, "community_name": "Community 12", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/DebateMode.tsx", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_footer_tsx", "label": "Footer.tsx", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Footer.tsx", "community": 13, "community_name": "Community 13", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx", "file_type": "code", "degree": 1}, {"id": "footer_footer", "label": "Footer()", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Footer()", "community": 13, "community_name": "Community 13", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/Footer.tsx", "file_type": "code", "degree": 1}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_agentsgrid_tsx", "label": "AgentsGrid.tsx", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "AgentsGrid.tsx", "community": 20, "community_name": "Community 20", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/AgentsGrid.tsx", "file_type": "code", "degree": 0}, {"id": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_techstack_tsx", "label": "TechStack.tsx", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "TechStack.tsx", "community": 14, "community_name": "Community 14", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx", "file_type": "code", "degree": 1}, {"id": "techstack_techstack", "label": "TechStack()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 13.0, "font": {"size": 0, "color": "#ffffff"}, "title": "TechStack()", "community": 14, "community_name": "Community 14", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/src/components/TechStack.tsx", "file_type": "code", "degree": 1}, {"id": "file", "label": "file.svg", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "file.svg", "community": 21, "community_name": "Community 21", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/file.svg", "file_type": "image", "degree": 0}, {"id": "globe", "label": "globe.svg", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "globe.svg", "community": 22, "community_name": "Community 22", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/globe.svg", "file_type": "image", "degree": 0}, {"id": "next", "label": "next.svg", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "next.svg", "community": 5, "community_name": "Community 5", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/next.svg", "file_type": "image", "degree": 2}, {"id": "vercel", "label": "vercel.svg", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "vercel.svg", "community": 23, "community_name": "Community 23", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/vercel.svg", "file_type": "image", "degree": 0}, {"id": "window", "label": "window.svg", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "window.svg", "community": 24, "community_name": "Community 24", "source_file": "/home/swayam/pi-projects/workspace/Arbitrates/web/public/window.svg", "file_type": "image", "degree": 0}];
+const RAW_EDGES = [{"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_supabase_client_py", "to": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_webhooks_py", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_storage_py", "to": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_storage_py", "to": "storage_webhookstore", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_storage_py", "to": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_webhooks_py", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "storage_webhookstore", "to": "storage_webhookstore_init", "label": "method", "title": "method [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "storage_webhookstore", "to": "storage_webhookstore_add", "label": "method", "title": "method [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "storage_webhookstore", "to": "storage_webhookstore_list", "label": "method", "title": "method [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "storage_webhookstore", "to": "storage_webhookstore_get", "label": "method", "title": "method [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "storage_webhookstore", "to": "models_webhookcreate", "label": "uses", "title": "uses [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "storage_webhookstore", "to": "models_webhookrecord", "label": "uses", "title": "uses [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "storage_webhookstore_add", "to": "models_webhookrecord", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "storage_webhookstore_list", "to": "webhooks_list_webhooks", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "storage_webhookstore_get", "to": "middleware_extract_signature", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "storage_webhookstore_get", "to": "middleware_extract_token", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "storage_webhookstore_get", "to": "webhooks_create_webhook", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "storage_webhookstore_get", "to": "webhooks_get_webhook", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_errors_py", "to": "errors_not_found", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_errors_py", "to": "errors_bad_request", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_errors_py", "to": "errors_unauthorized", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_errors_py", "to": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_webhooks_py", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "errors_not_found", "to": "webhooks_get_webhook", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "to": "models_apiresponse", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "to": "models_errordetail", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "to": "models_webhookcreate", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "to": "models_webhookrecord", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "to": "models_webhooklist", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "to": "home_swayam_pi_projects_workspace_arbitrates_backend_app_middleware_py", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "to": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_webhooks_py", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_models_py", "to": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_health_py", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "models_apiresponse", "to": "basemodel", "label": "inherits", "title": "inherits [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "models_apiresponse", "to": "main_http_exception_handler", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "models_apiresponse", "to": "main_validation_exception_handler", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "models_apiresponse", "to": "main_unhandled_exception_handler", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "models_apiresponse", "to": "middleware_auth_failed", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "models_apiresponse", "to": "webhooks_create_webhook", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "models_apiresponse", "to": "webhooks_list_webhooks", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "models_apiresponse", "to": "webhooks_get_webhook", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "models_apiresponse", "to": "health_read_root", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "basemodel", "to": "models_errordetail", "label": "inherits", "title": "inherits [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "basemodel", "to": "models_webhookcreate", "label": "inherits", "title": "inherits [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "basemodel", "to": "models_webhookrecord", "label": "inherits", "title": "inherits [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "basemodel", "to": "models_webhooklist", "label": "inherits", "title": "inherits [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "models_webhooklist", "to": "webhooks_list_webhooks", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_main_py", "to": "main_http_exception_handler", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_main_py", "to": "main_validation_exception_handler", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_main_py", "to": "main_unhandled_exception_handler", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_middleware_py", "to": "middleware_get_expected_key", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_middleware_py", "to": "middleware_get_expected_signature", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_middleware_py", "to": "middleware_extract_signature", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_middleware_py", "to": "middleware_extract_token", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_middleware_py", "to": "middleware_is_exempt", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_middleware_py", "to": "middleware_auth_failed", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_middleware_py", "to": "middleware_api_key_middleware", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "middleware_get_expected_key", "to": "middleware_api_key_middleware", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "middleware_get_expected_signature", "to": "middleware_api_key_middleware", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "middleware_extract_signature", "to": "middleware_api_key_middleware", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "middleware_extract_token", "to": "middleware_api_key_middleware", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "middleware_is_exempt", "to": "middleware_api_key_middleware", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "middleware_auth_failed", "to": "middleware_api_key_middleware", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_webhooks_py", "to": "webhooks_create_webhook", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_webhooks_py", "to": "webhooks_list_webhooks", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_webhooks_py", "to": "webhooks_get_webhook", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_routers_health_py", "to": "health_read_root", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_workers_celery_worker_py", "to": "celery_worker_resolve_broker_url", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_workers_celery_worker_py", "to": "home_swayam_pi_projects_workspace_arbitrates_backend_app_tasks_agent_py", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_services_docker_service_py", "to": "docker_service_upload_to_r2", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_services_docker_service_py", "to": "docker_service_run_container", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_services_docker_service_py", "to": "home_swayam_pi_projects_workspace_arbitrates_backend_app_tasks_agent_py", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docker_service_upload_to_r2", "to": "docker_service_run_container", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "docker_service_run_container", "to": "agent_process_webhook", "label": "calls", "title": "calls [INFERRED]", "dashes": true, "width": 1, "color": {"opacity": 0.35}, "confidence": "INFERRED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_backend_app_tasks_agent_py", "to": "agent_process_webhook", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_next_config_ts", "to": "next", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_app_layout_tsx", "to": "next", "label": "imports_from", "title": "imports_from [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_app_layout_tsx", "to": "layout_rootlayout", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_app_page_tsx", "to": "page_home", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_app_connect_page_tsx", "to": "page_loadwebhooks", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_navbar_tsx", "to": "navbar_navbar", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_hero_tsx", "to": "hero_hero", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_cta_tsx", "to": "cta_cta", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_dashboardpreview_tsx", "to": "dashboardpreview_dashboardpreview", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_debatemode_tsx", "to": "debatemode_debatemode", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_footer_tsx", "to": "footer_footer", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "home_swayam_pi_projects_workspace_arbitrates_web_src_components_techstack_tsx", "to": "techstack_techstack", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}];
+const LEGEND = [{"cid": 0, "color": "#4E79A7", "label": "Community 0", "count": 11}, {"cid": 1, "color": "#F28E2B", "label": "Community 1", "count": 9}, {"cid": 2, "color": "#E15759", "label": "Community 2", "count": 9}, {"cid": 3, "color": "#76B7B2", "label": "Community 3", "count": 7}, {"cid": 4, "color": "#59A14F", "label": "Community 4", "count": 7}, {"cid": 5, "color": "#EDC948", "label": "Community 5", "count": 4}, {"cid": 6, "color": "#B07AA1", "label": "Community 6", "count": 2}, {"cid": 7, "color": "#FF9DA7", "label": "Community 7", "count": 2}, {"cid": 8, "color": "#9C755F", "label": "Community 8", "count": 2}, {"cid": 9, "color": "#BAB0AC", "label": "Community 9", "count": 2}, {"cid": 10, "color": "#4E79A7", "label": "Community 10", "count": 2}, {"cid": 11, "color": "#F28E2B", "label": "Community 11", "count": 2}, {"cid": 12, "color": "#E15759", "label": "Community 12", "count": 2}, {"cid": 13, "color": "#76B7B2", "label": "Community 13", "count": 2}, {"cid": 14, "color": "#59A14F", "label": "Community 14", "count": 2}, {"cid": 15, "color": "#EDC948", "label": "Community 15", "count": 1}, {"cid": 16, "color": "#B07AA1", "label": "Community 16", "count": 1}, {"cid": 17, "color": "#FF9DA7", "label": "Community 17", "count": 1}, {"cid": 18, "color": "#9C755F", "label": "Community 18", "count": 1}, {"cid": 19, "color": "#BAB0AC", "label": "Community 19", "count": 1}, {"cid": 20, "color": "#4E79A7", "label": "Community 20", "count": 1}, {"cid": 21, "color": "#F28E2B", "label": "Community 21", "count": 1}, {"cid": 22, "color": "#E15759", "label": "Community 22", "count": 1}, {"cid": 23, "color": "#76B7B2", "label": "Community 23", "count": 1}, {"cid": 24, "color": "#59A14F", "label": "Community 24", "count": 1}];
 
-const nodes = new vis.DataSet(RAW_NODES);
-const edges = new vis.DataSet(RAW_EDGES.map((edge) => ({ ...edge, arrows: EDGE_ARROWS, dashes: edge.dashes })));
-const nodeIndex = new Map(RAW_NODES.map((node) => [node.id, node]));
-const nodesByCommunity = new Map();
-RAW_NODES.forEach((node) => {
-  const group = nodesByCommunity.get(node.community) || [];
-  group.push(node.id);
-  nodesByCommunity.set(node.community, group);
-});
+// HTML-escape helper — prevents XSS when injecting graph data into innerHTML
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
 
-const edgesByNode = new Map();
-RAW_EDGES.forEach((edge) => {
-  const outgoing = edgesByNode.get(edge.from) || [];
-  outgoing.push(edge);
-  edgesByNode.set(edge.from, outgoing);
+// Build vis datasets
+const nodesDS = new vis.DataSet(RAW_NODES.map(n => ({
+  id: n.id, label: n.label, color: n.color, size: n.size,
+  font: n.font, title: n.title,
+  _community: n.community, _community_name: n.community_name,
+  _source_file: n.source_file, _file_type: n.file_type, _degree: n.degree,
+})));
 
-  const incoming = edgesByNode.get(edge.to) || [];
-  incoming.push(edge);
-  edgesByNode.set(edge.to, incoming);
-});
+const edgesDS = new vis.DataSet(RAW_EDGES.map((e, i) => ({
+  id: i, from: e.from, to: e.to,
+  label: '',
+  title: e.title,
+  dashes: e.dashes,
+  width: e.width,
+  color: e.color,
+  arrows: { to: { enabled: true, scaleFactor: 0.5 } },
+})));
 
-let selectedNodeId = null;
-
-const elements = {
-  stats: document.getElementById('stats'),
-  search: document.getElementById('search'),
-  matches: document.getElementById('matches'),
-  selectionEmpty: document.getElementById('selectionEmpty'),
-  selectionDetails: document.getElementById('selectionDetails'),
-  selectedLabel: document.getElementById('selectedLabel'),
-  selectedSummary: document.getElementById('selectedSummary'),
-  selectedSource: document.getElementById('selectedSource'),
-  selectedDocumentTitleLabel: document.getElementById('selectedDocumentTitleLabel'),
-  selectedDocumentTitle: document.getElementById('selectedDocumentTitle'),
-  selectedSourceUrlLabel: document.getElementById('selectedSourceUrlLabel'),
-  selectedSourceUrl: document.getElementById('selectedSourceUrl'),
-  selectedAuthorLabel: document.getElementById('selectedAuthorLabel'),
-  selectedAuthor: document.getElementById('selectedAuthor'),
-  selectedContributorLabel: document.getElementById('selectedContributorLabel'),
-  selectedContributor: document.getElementById('selectedContributor'),
-  selectedCapturedAtLabel: document.getElementById('selectedCapturedAtLabel'),
-  selectedCapturedAt: document.getElementById('selectedCapturedAt'),
-  selectedQuestionLabel: document.getElementById('selectedQuestionLabel'),
-  selectedQuestion: document.getElementById('selectedQuestion'),
-  selectedArxivIdLabel: document.getElementById('selectedArxivIdLabel'),
-  selectedArxivId: document.getElementById('selectedArxivId'),
-  selectedType: document.getElementById('selectedType'),
-  selectedCommunity: document.getElementById('selectedCommunity'),
-  selectedConfidence: document.getElementById('selectedConfidence'),
-  selectedDegree: document.getElementById('selectedDegree'),
-  neighborList: document.getElementById('neighborList'),
-  neighborsEmpty: document.getElementById('neighborsEmpty'),
-  legend: document.getElementById('legend'),
-  resetView: document.getElementById('resetView'),
-  clearSelection: document.getElementById('clearSelection'),
-  focusNeighborhood: document.getElementById('focusNeighborhood'),
-};
-
-const network = new vis.Network(
-  document.getElementById('graph'),
-  { nodes, edges },
-  {
-    autoResize: true,
-    interaction: { hover: true, navigationButtons: true, keyboard: true },
-    physics: { stabilization: { iterations: 300 }, barnesHut: { gravitationalConstant: -4200, springLength: 120 } },
-    nodes: {
-      borderWidth: 1.25,
-      shape: 'dot',
-      font: { size: 14, face: 'Inter, ui-sans-serif, system-ui, sans-serif' },
-      scaling: { min: 12, max: 34 },
+const container = document.getElementById('graph');
+const network = new vis.Network(container, { nodes: nodesDS, edges: edgesDS }, {
+  physics: {
+    enabled: true,
+    solver: 'forceAtlas2Based',
+    forceAtlas2Based: {
+      gravitationalConstant: -60,
+      centralGravity: 0.005,
+      springLength: 120,
+      springConstant: 0.08,
+      damping: 0.4,
+      avoidOverlap: 0.8,
     },
-    edges: {
-      arrows: EDGE_ARROWS,
-      font: { align: 'middle', size: 10 },
-      color: { inherit: false, color: '#94a3b8', highlight: '#334155' },
-      smooth: { type: 'dynamic' },
-    },
+    stabilization: { iterations: 200, fit: true },
   },
-);
-network.once('stabilizationIterationsDone', function() { network.setOptions({ physics: false }); });
+  interaction: {
+    hover: true,
+    tooltipDelay: 100,
+    hideEdgesOnDrag: true,
+    navigationButtons: false,
+    keyboard: false,
+  },
+  nodes: { shape: 'dot', borderWidth: 1.5 },
+  edges: { smooth: { type: 'continuous', roundness: 0.2 }, selectionWidth: 3 },
+});
 
-function createMeta(text, className) {
-  const span = document.createElement('span');
-  span.className = className;
-  span.textContent = text;
-  return span;
+network.once('stabilizationIterationsDone', () => {
+  network.setOptions({ physics: { enabled: false } });
+});
+
+function showInfo(nodeId) {
+  const n = nodesDS.get(nodeId);
+  if (!n) return;
+  const neighborIds = network.getConnectedNodes(nodeId);
+  const neighborItems = neighborIds.map(nid => {
+    const nb = nodesDS.get(nid);
+    const color = nb ? nb.color.background : '#555';
+    return `<span class="neighbor-link" style="border-left-color:${esc(color)}" onclick="focusNode(${JSON.stringify(nid)})">${esc(nb ? nb.label : nid)}</span>`;
+  }).join('');
+  document.getElementById('info-content').innerHTML = `
+    <div class="field"><b>${esc(n.label)}</b></div>
+    <div class="field">Type: ${esc(n._file_type || 'unknown')}</div>
+    <div class="field">Community: ${esc(n._community_name)}</div>
+    <div class="field">Source: ${esc(n._source_file || '-')}</div>
+    <div class="field">Degree: ${n._degree}</div>
+    ${neighborIds.length ? `<div class="field" style="margin-top:8px;color:#aaa;font-size:11px">Neighbors (${neighborIds.length})</div><div id="neighbors-list">${neighborItems}</div>` : ''}
+  `;
 }
 
-function setOptionalMeta(labelElement, valueElement, value, options = {}) {
-  const text = typeof value === 'string' ? value.trim() : '';
-  const hasValue = text.length > 0;
-  labelElement.hidden = !hasValue;
-  valueElement.hidden = !hasValue;
-  valueElement.replaceChildren();
-
-  if (!hasValue) {
-    return;
-  }
-
-  if (options.link === true) {
-    const link = document.createElement('a');
-    link.href = text;
-    link.textContent = text;
-    link.target = '_blank';
-    link.rel = 'noreferrer noopener';
-    valueElement.appendChild(link);
-    return;
-  }
-
-  valueElement.textContent = text;
-}
-
-function getNeighborEntries(nodeId) {
-  const relatedEdges = edgesByNode.get(nodeId) || [];
-  const deduped = new Map();
-  relatedEdges.forEach((edge) => {
-    const isOutgoing = edge.from === nodeId;
-    const otherId = isOutgoing ? edge.to : edge.from;
-    if (!nodeIndex.has(otherId)) {
-      return;
-    }
-
-    const key = otherId + '::' + edge.label + '::' + edge.confidence;
-    if (deduped.has(key)) {
-      return;
-    }
-
-    const other = nodeIndex.get(otherId);
-    deduped.set(key, {
-      id: otherId,
-      label: other.label,
-      relation: edge.label || 'related_to',
-      confidence: edge.confidence || 'EXTRACTED',
-      direction: IS_DIRECTED ? (isOutgoing ? 'outgoing' : 'incoming') : 'connected',
-      community: other.community_name,
-      degree: other.degree,
-    });
-  });
-
-  return [...deduped.values()].sort((left, right) => {
-    return right.degree - left.degree || left.label.localeCompare(right.label);
-  });
-}
-
-function renderStats() {
-  const items = [
-    { label: 'Nodes', value: STATS.nodes },
-    { label: 'Edges', value: STATS.edges },
-    { label: 'Communities', value: STATS.communities },
-  ];
-
-  items.forEach((item) => {
-    const card = document.createElement('div');
-    card.className = 'stat';
-    card.appendChild(createMeta(item.label, 'muted'));
-    const value = document.createElement('strong');
-    value.textContent = String(item.value);
-    card.appendChild(value);
-    elements.stats.appendChild(card);
-  });
-}
-
-function renderSearchMatches(query) {
-  elements.matches.replaceChildren();
-  const trimmed = query.trim().toLowerCase();
-  if (!trimmed) {
-    elements.matches.appendChild(createMeta('Type to surface the best matching nodes.', 'empty'));
-    return [];
-  }
-
-  const matches = RAW_NODES.filter((node) => {
-    return node.label.toLowerCase().includes(trimmed) || node.source_file.toLowerCase().includes(trimmed);
-  })
-    .sort((left, right) => right.degree - left.degree || left.label.localeCompare(right.label))
-    .slice(0, 8);
-
-  if (matches.length === 0) {
-    elements.matches.appendChild(createMeta('No matches yet. Try a file name, class, function, or concept.', 'empty'));
-    return [];
-  }
-
-  matches.forEach((node) => {
-    const button = document.createElement('button');
-    button.className = 'match-button small';
-    const left = document.createElement('span');
-    left.textContent = node.label;
-    const right = createMeta(node.community_name + ' · degree ' + node.degree, 'match-meta');
-    button.append(left, right);
-    button.addEventListener('click', () => selectNodeById(node.id, { focus: true }));
-    elements.matches.appendChild(button);
-  });
-
-  return matches;
-}
-
-function renderNeighbors(nodeId) {
-  elements.neighborList.replaceChildren();
-  if (!nodeId) {
-    elements.neighborsEmpty.hidden = false;
-    return;
-  }
-
-  const neighbors = getNeighborEntries(nodeId);
-  if (neighbors.length === 0) {
-    elements.neighborsEmpty.hidden = false;
-    elements.neighborsEmpty.textContent = 'This node currently has no rendered neighbors in the exported graph.';
-    return;
-  }
-
-  elements.neighborsEmpty.hidden = true;
-  neighbors.forEach((entry) => {
-    const button = document.createElement('button');
-    button.className = 'neighbor-button small';
-    const left = document.createElement('span');
-    left.textContent = entry.label;
-    const right = createMeta(entry.direction + ' · ' + entry.relation + ' [' + entry.confidence + ']', 'neighbor-meta');
-    button.append(left, right);
-    button.addEventListener('click', () => selectNodeById(entry.id, { focus: true }));
-    elements.neighborList.appendChild(button);
-  });
-}
-
-function updateHash(nodeId) {
-  if (!nodeId) {
-    history.replaceState(null, '', location.pathname + location.search);
-    return;
-  }
-
-  history.replaceState(null, '', '#' + encodeURIComponent(nodeId));
-}
-
-function renderSelection(nodeId) {
-  if (!nodeId || !nodeIndex.has(nodeId)) {
-    selectedNodeId = null;
-    elements.selectionEmpty.hidden = false;
-    elements.selectionDetails.hidden = true;
-    elements.selectedLabel.textContent = '';
-    elements.selectedSummary.textContent = '';
-    elements.selectedSource.textContent = '';
-    setOptionalMeta(elements.selectedDocumentTitleLabel, elements.selectedDocumentTitle, '');
-    setOptionalMeta(elements.selectedSourceUrlLabel, elements.selectedSourceUrl, '');
-    setOptionalMeta(elements.selectedAuthorLabel, elements.selectedAuthor, '');
-    setOptionalMeta(elements.selectedContributorLabel, elements.selectedContributor, '');
-    setOptionalMeta(elements.selectedCapturedAtLabel, elements.selectedCapturedAt, '');
-    setOptionalMeta(elements.selectedQuestionLabel, elements.selectedQuestion, '');
-    setOptionalMeta(elements.selectedArxivIdLabel, elements.selectedArxivId, '');
-    elements.selectedType.textContent = '';
-    elements.selectedCommunity.textContent = '';
-    elements.selectedConfidence.textContent = '';
-    elements.selectedDegree.textContent = '';
-    renderNeighbors(null);
-    return;
-  }
-
-  const node = nodeIndex.get(nodeId);
-  selectedNodeId = nodeId;
-  elements.selectionEmpty.hidden = true;
-  elements.selectionDetails.hidden = false;
-  elements.selectedLabel.textContent = node.label;
-  elements.selectedSummary.textContent = node.document_title || node.question || 'Inspect evidence, jump to neighbors, or focus this local neighborhood.';
-  elements.selectedSource.textContent = [node.source_file, node.source_location].filter(Boolean).join(': ') || 'Unknown source';
-  setOptionalMeta(elements.selectedDocumentTitleLabel, elements.selectedDocumentTitle, node.document_title || '');
-  setOptionalMeta(elements.selectedSourceUrlLabel, elements.selectedSourceUrl, node.safe_source_url || '', { link: Boolean(node.safe_source_url) });
-  setOptionalMeta(elements.selectedAuthorLabel, elements.selectedAuthor, node.author || '');
-  setOptionalMeta(elements.selectedContributorLabel, elements.selectedContributor, node.contributor || '');
-  setOptionalMeta(elements.selectedCapturedAtLabel, elements.selectedCapturedAt, node.captured_at || '');
-  setOptionalMeta(elements.selectedQuestionLabel, elements.selectedQuestion, node.question || '');
-  setOptionalMeta(elements.selectedArxivIdLabel, elements.selectedArxivId, node.arxiv_id || '');
-  elements.selectedType.textContent = node.file_type || 'unknown';
-  elements.selectedCommunity.textContent = node.community_name;
-  elements.selectedConfidence.textContent = node.confidence;
-  elements.selectedDegree.textContent = String(node.degree);
-  renderNeighbors(nodeId);
-}
-
-function selectNodeById(nodeId, options = { focus: true }) {
-  if (!nodeIndex.has(nodeId)) {
-    return;
-  }
-
+function focusNode(nodeId) {
+  network.focus(nodeId, { scale: 1.4, animation: true });
   network.selectNodes([nodeId]);
-  renderSelection(nodeId);
-  updateHash(nodeId);
-  if (options.focus !== false) {
-    network.focus(nodeId, { scale: 1.15, animation: { duration: 400, easingFunction: 'easeInOutQuad' } });
+  showInfo(nodeId);
+}
+
+// Track hovered node — hover detection is more reliable than click params
+let hoveredNodeId = null;
+network.on('hoverNode', params => {
+  hoveredNodeId = params.node;
+  container.style.cursor = 'pointer';
+});
+network.on('blurNode', () => {
+  hoveredNodeId = null;
+  container.style.cursor = 'default';
+});
+container.addEventListener('click', () => {
+  if (hoveredNodeId !== null) {
+    showInfo(hoveredNodeId);
+    network.selectNodes([hoveredNodeId]);
   }
-}
-
-function focusNeighborhood() {
-  if (!selectedNodeId) {
-    return;
+});
+network.on('click', params => {
+  if (params.nodes.length > 0) {
+    showInfo(params.nodes[0]);
+  } else if (hoveredNodeId === null) {
+    document.getElementById('info-content').innerHTML = '<span class="empty">Click a node to inspect it</span>';
   }
+});
 
-  const nodeIds = [selectedNodeId, ...getNeighborEntries(selectedNodeId).map((entry) => entry.id)];
-  network.selectNodes(nodeIds);
-  network.fit({ nodes: nodeIds, animation: { duration: 400, easingFunction: 'easeInOutQuad' } });
-}
-
-function focusCommunity(communityId) {
-  const nodeIds = nodesByCommunity.get(communityId) || [];
-  if (nodeIds.length === 0) {
-    return;
-  }
-
-  network.selectNodes(nodeIds);
-  network.fit({ nodes: nodeIds, animation: { duration: 500, easingFunction: 'easeInOutQuad' } });
-}
-
-function clearSelection() {
-  network.unselectAll();
-  renderSelection(null);
-  updateHash(null);
-}
-
-function renderLegend() {
-  LEGEND.sort((left, right) => right.count - left.count || left.label.localeCompare(right.label));
-  LEGEND.forEach((entry) => {
-    const button = document.createElement('button');
-    button.className = 'legend-button small';
-    const left = document.createElement('span');
-    const chip = document.createElement('span');
-    chip.className = 'legend-chip';
-    chip.style.background = entry.color;
-    const label = document.createElement('span');
-    label.textContent = entry.label;
-    left.append(chip, document.createTextNode(' '), label);
-    const right = createMeta(String(entry.count), 'neighbor-meta');
-    button.append(left, right);
-    button.addEventListener('click', () => focusCommunity(entry.cid));
-    elements.legend.appendChild(button);
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('search-results');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.toLowerCase().trim();
+  searchResults.innerHTML = '';
+  if (!q) { searchResults.style.display = 'none'; return; }
+  const matches = RAW_NODES.filter(n => n.label.toLowerCase().includes(q)).slice(0, 20);
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.style.display = 'block';
+  matches.forEach(n => {
+    const el = document.createElement('div');
+    el.className = 'search-item';
+    el.textContent = n.label;
+    el.style.borderLeft = `3px solid ${n.color.background}`;
+    el.style.paddingLeft = '8px';
+    el.onclick = () => {
+      network.focus(n.id, { scale: 1.5, animation: true });
+      network.selectNodes([n.id]);
+      showInfo(n.id);
+      searchResults.style.display = 'none';
+      searchInput.value = '';
+    };
+    searchResults.appendChild(el);
   });
-}
-
-renderStats();
-renderLegend();
-renderSearchMatches('');
-renderSelection(null);
-
-elements.search.addEventListener('input', (event) => {
-  renderSearchMatches(event.target.value || '');
+});
+document.addEventListener('click', e => {
+  if (!searchResults.contains(e.target) && e.target !== searchInput)
+    searchResults.style.display = 'none';
 });
 
-elements.search.addEventListener('keydown', (event) => {
-  if (event.key !== 'Enter') {
-    return;
-  }
-  const matches = renderSearchMatches(elements.search.value || '');
-  if (matches.length > 0) {
-    selectNodeById(matches[0].id, { focus: true });
-  }
+const hiddenCommunities = new Set();
+const legendEl = document.getElementById('legend');
+LEGEND.forEach(c => {
+  const item = document.createElement('div');
+  item.className = 'legend-item';
+  item.innerHTML = `<div class="legend-dot" style="background:${c.color}"></div>
+    <span class="legend-label">${c.label}</span>
+    <span class="legend-count">${c.count}</span>`;
+  item.onclick = () => {
+    if (hiddenCommunities.has(c.cid)) {
+      hiddenCommunities.delete(c.cid);
+      item.classList.remove('dimmed');
+    } else {
+      hiddenCommunities.add(c.cid);
+      item.classList.add('dimmed');
+    }
+    const updates = RAW_NODES
+      .filter(n => n.community === c.cid)
+      .map(n => ({ id: n.id, hidden: hiddenCommunities.has(c.cid) }));
+    nodesDS.update(updates);
+  };
+  legendEl.appendChild(item);
 });
-
-elements.resetView.addEventListener('click', () => {
-  network.fit({ animation: { duration: 500, easingFunction: 'easeInOutQuad' } });
+</script>
+<script>
+// Render hyperedges as shaded regions
+const hyperedges = [];
+// afterDrawing passes ctx already transformed to network coordinate space.
+// Draw node positions raw — no manual pan/zoom/DPR math needed.
+network.on('afterDrawing', function(ctx) {
+    hyperedges.forEach(h => {
+        const positions = h.nodes
+            .map(nid => network.getPositions([nid])[nid])
+            .filter(p => p !== undefined);
+        if (positions.length < 2) return;
+        ctx.save();
+        ctx.globalAlpha = 0.12;
+        ctx.fillStyle = '#6366f1';
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        // Centroid and expanded hull in network coordinates
+        const cx = positions.reduce((s, p) => s + p.x, 0) / positions.length;
+        const cy = positions.reduce((s, p) => s + p.y, 0) / positions.length;
+        const expanded = positions.map(p => ({
+            x: cx + (p.x - cx) * 1.15,
+            y: cy + (p.y - cy) * 1.15
+        }));
+        ctx.moveTo(expanded[0].x, expanded[0].y);
+        expanded.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+        ctx.closePath();
+        ctx.fill();
+        ctx.globalAlpha = 0.4;
+        ctx.stroke();
+        // Label
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = '#4f46e5';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(h.label, cx, cy - 5);
+        ctx.restore();
+    });
 });
-elements.clearSelection.addEventListener('click', clearSelection);
-elements.focusNeighborhood.addEventListener('click', focusNeighborhood);
-
-network.on('selectNode', (event) => {
-  const nodeId = event.nodes && event.nodes[0];
-  if (nodeId) {
-    selectNodeById(nodeId, { focus: false });
-  }
-});
-
-network.on('deselectNode', () => {
-  renderSelection(null);
-  updateHash(null);
-});
-
-window.addEventListener('hashchange', () => {
-  const hashId = decodeURIComponent(window.location.hash.replace(/^#/, ''));
-  if (hashId && nodeIndex.has(hashId)) {
-    selectNodeById(hashId, { focus: true });
-  }
-});
-
-const initialHash = decodeURIComponent(window.location.hash.replace(/^#/, ''));
-if (initialHash && nodeIndex.has(initialHash)) {
-  selectNodeById(initialHash, { focus: true });
-} else {
-  network.fit({ animation: false });
-}
 </script>
 </body>
 </html>
