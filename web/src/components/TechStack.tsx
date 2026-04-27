@@ -8,15 +8,21 @@ const stack = [
 
 export default function TechStack() {
   return (
-    <section className="py-24 bg-surface-container-lowest">
+    <section className="py-22 bg-surface-container-lowest border-y border-outline-variant/25">
       <div className="container mx-auto px-6">
-        <div className="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all">
+        <p className="text-center text-xs font-label uppercase tracking-[0.2em] text-on-surface-variant mb-8">
+          Built on battle-tested infrastructure
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-5">
           {stack.map((item) => (
-            <div key={item.label} className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-2xl" data-icon={item.icon}>
+            <div
+              key={item.label}
+              className="rounded-xl border border-outline-variant/25 bg-surface-container p-4 flex items-center justify-center gap-2 text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors"
+            >
+              <span className="material-symbols-outlined text-xl" data-icon={item.icon}>
                 {item.icon}
               </span>
-              <span className="font-headline font-bold">{item.label}</span>
+              <span className="font-headline font-semibold text-sm">{item.label}</span>
             </div>
           ))}
         </div>

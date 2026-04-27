@@ -7,6 +7,9 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    group_add:
+      - "988"
     restart: always
     env_file: .env
     environment:
@@ -24,12 +27,22 @@ services:
       start_period: 10s
 
   frontend:
-    build: ./web
+    build:
+      context: ./web
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+        R2_ACCOUNT_ID: ${R2_ACCOUNT_ID:-}
+        CF_ACCOUNT_ID: ${CF_ACCOUNT_ID:-}
+        R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID:-}
+        R2_ACCESS_KEY: ${R2_ACCESS_KEY:-}
+        R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY:-}
+        R2_SECRET_KEY: ${R2_SECRET_KEY:-}
     container_name: arbitrates-frontend
+    env_file: .env
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8000}
     depends_on:
       - backend
     restart: always
@@ -53,11 +66,24 @@ services:
     build:
       context: ./backend
     container_name: arbitrates-worker
+    user: root
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/graphify:/tmp/graphify
+    group_add:
+      - "988"
     command: celery -A app.workers.celery_worker:celery worker --loglevel=info
     env_file: .env
     depends_on:
       redis:
         condition: service_healthy
+
+  graphify-runner:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.graphify
+    image: graphify-runner   # ← this names the built image
+    command: echo "graphify-runner image ready"  # ← exits immediately, just builds the image
 
 volumes:
   redis_data:

@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-fixed">
       <Navbar />
-      <main className="pt-16">
+      <main className="pt-[72px]">
         <Hero />
         <AgentsGrid />
         <DebateMode />
